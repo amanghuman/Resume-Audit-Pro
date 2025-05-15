@@ -61,89 +61,68 @@ def extract_text_from_pdf(uploaded_file):
 def get_resume_feedback(resume_text):
     """Get AI feedback on resume"""
     prompt = f"""
-# Executive Resume Audit: Strategic Optimization Framework  
-**Role:** Senior Talent Strategist (20+ Years at Global Enterprises)  
-**Objective:** Convert resumes into interview-winning documents through ATS precision and executive narrative design  
+# 📄 Resume Review Prompt
+
+You are a **senior hiring manager** with over 20 years of experience at top-tier global companies.  
+Your task is to critically evaluate the resume provided below as if you're deciding whether to shortlist this candidate for a competitive role.
+
+Your feedback should be **professional, practical, and tailored for a real-world job search**.  
+Focus on **clarity, structure, tone, formatting, keyword alignment**, and **overall impact**—with an eye on how well this resume would perform both with human recruiters and Applicant Tracking Systems (ATS).
 
 ---
 
-## 📊 Performance Dashboard  
-| Metric                | Current Status | Target   | Priority Focus Areas       |  
-|-----------------------|----------------|----------|----------------------------|  
-| ATS Compliance        | 68/100         | 95+      | Missing core headers       |  
-| Human Scan Retention  | 2.1s           | 5s+      | Weak opening hook          |  
-| Achievement Ratio     | 41%            | 80%+     | Overemphasis on duties     |  
-| Strategic Mirroring   | Limited        | Exact    | JD keywords not integrated |  
+## 📝 Resume Evaluation
+
+- **Current Effectiveness (1–10):**
+- **Optimized Potential (1–10):**
+- **Brief Summary of Strengths & Issues:**
+- **ATS Readiness (Yes/No):**
+- **Your Key Takeaway (1–2 sentences):**
 
 ---
 
-## ❗ Critical Risks (Immediate Action Required)  
-1. **Value Obscurity**  
-   - Career-defining achievements buried beneath routine tasks  
-   - No quantifiable business impact in 89% of role descriptions  
+## 🚨 Major Issues (Red Flags)
 
-2. **ATS Rejection Triggers**  
-   - Non-standard section titles ("Professional Journey" vs "Experience")  
-   - 7/10 required skills from JD missing in first page  
-
-3. **Career Narrative Gaps**  
-   - Unexplained 11-month gap formatted as generic consulting period  
-   - Progressive leadership story fragmented across roles  
+List 3–5 critical issues that could hurt the resume’s chances  
+(e.g., vague bullet points, unclear layout, irrelevant content).
 
 ---
 
-## 🔎 ATS Optimization Analysis  
-| Compliance Factor     | Status         | Evidence                  |  
-|-----------------------|----------------|---------------------------|  
-| Keyword Integration   | 42% Match      | "Digital Transformation" missing (JD mentions x6) |  
-| Section Integrity     | High Risk      | Mixed date formats (MM/YYYY vs YYYY-MM) |  
-| Parse Success Rate     | 51%            | Graphics cause header failure in Greenhouse test |  
-| Readability Score     | 3.8/5          | Dense text blocks reduce skimmability |  
+## ⚙️ ATS Compatibility Check
+
+- **Missing or Weak Keywords:**  
+- **Design/Layout Barriers:**  
+- **Estimated ATS Score (1–10):**
 
 ---
 
-## 🛠️ Optimization Roadmap  
-| Focus Area          | Quick Adjustments (<1hr)      | Strategic Enhancements (2-4hr)     | Competitive Differentiators (5hr+)    |  
-|---------------------|-------------------------------|-------------------------------------|---------------------------------------|  
-| **Value Proposition** | Add 3 metrics-driven opening bullets | Build CAR (Challenge-Action-Result) narratives | Create JD-specific achievement matrix |  
-| **ATS Foundation**  | Standardize all section headers | Weave 5 JD keywords into summary    | Develop multi-version tracking system |  
-| **Visual Strategy** | Single-column reformatting    | Implement Z-pattern hierarchy       | Add interactive elements for digital  |  
-| **Career Story**    | Clarify employment timeline    | Show promotion velocity with impact  | Integrate leadership philosophy       |  
+## 🔧 Fix Recommendations
+
+| Category   | Quick Fix (≤1 hr)                          | Deep Fix (3–5 hrs)                          |
+|------------|--------------------------------------------|---------------------------------------------|
+| **Content** | Sharpen bullet points, add action verbs    | Rework descriptions to show results         |
+| **Design**  | Standardize fonts, improve spacing         | Apply modern, clean professional layout     |
+| **Strategy**| Add relevant keywords, tighten summary     | Tailor resume to specific job goals         |
 
 ---
 
-## 🏅 Success Benchmarks  
-**Top 1% Resume Standards:**  
-- 5-Second Hook: "Drove $560M revenue growth through..."  
-- ATS Armor: 100% keyword match in first page  
-- Executive Fluency: EBITDA/ROI/NPV alignment  
-- Retention Engineering: 8s+ average human scan time  
+## 🎯 Positioning Benchmark
+
+- **Target Level:** (e.g., Internship / Entry-Level / Mid-Level)
+- **Resume Tier:** Top 10% / Average / Needs Work
+- **One-Line Summary:** (e.g., “Strong foundation, needs polish for ATS and visual clarity.”)
 
 ---
 
-## 📌 Implementation Toolkit  
-1. **Achievement Extraction Protocol**  
-   - Convert "Managed projects" → "Delivered 22% cost savings across 14 projects..."  
-2. **JD Mirroring Technique**  
-   - Embed 3 company values into professional summary  
-3. **Gap Resolution Framework**  
-   - Reframe career break: "Led AI certification program during industry transition"  
+## ✅ Suggestions for Improvement (General Tips for Students)
+
+- Keep it to one page unless you have over 5 years of experience.
+- Prioritize results and impact (quantify wherever possible).
+- Align language and structure with job descriptions.
+- Avoid overly designed templates—ATS may not parse them well.
+- Proofread for grammar, consistency, and tone.
 
 ---
-
-## 🚩 Red Flag Mitigation  
-**Issue:** Multiple short-term roles (2020-2022)  
-**Solution:** Cluster as "Turnaround Consultations: Rescued $17M contract for Fortune 500 client"  
-
-**Issue:** Missing executive keywords  
-**Solution:** Insert "P&L Leadership" and "Global Scaling" in first 3 bullet points  
-
----
-
-**Delivery Standards:**  
-- Clean markdown structure (no code blocks)  
-- Data-first insights with actionable tiers  
-- Boardroom-level strategic framing  
 
 Resume:
 \"\"\"
