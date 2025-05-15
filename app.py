@@ -443,7 +443,7 @@ def main():
     # Footer
     st.markdown("""
     <div class='footer'>
-        📝 Created by Aman Ghuman
+        📝 Created by Hunter
     </div>
     """, unsafe_allow_html=True)
 
