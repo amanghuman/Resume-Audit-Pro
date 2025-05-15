@@ -163,9 +163,6 @@ Focus on **clarity, structure, tone, formatting, keyword alignment**, and **over
 Respond using the *exact* section titles, formatting, and Markdown structure as shown below.  
 **Do not skip or add sections. Do not reword headings.**
 
-
-## 📝 Resume Evaluation  
-
 - **Current Effectiveness (1–10):** 6  
 - **Optimized Potential (1–10):** 8  
 - **Brief Summary of Strengths & Issues:** Strong technical base, but layout and phrasing limit clarity.  
@@ -435,7 +432,7 @@ def main():
     # Display feedback
     if st.session_state.feedback:
         #st.markdown("<div class='feedback-section'>", unsafe_allow_html=True)
-        st.markdown("## 🔍 Resume Analysis Results")
+        st.markdown("## 📝 Resume Evaluation")
         feedback_text = st.session_state.feedback.replace("\"\"\"", "").strip()
         st.markdown(feedback_text)
         st.markdown("</div>", unsafe_allow_html=True)
