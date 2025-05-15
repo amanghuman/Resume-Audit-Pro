@@ -226,7 +226,7 @@ Below are quick and deep fixes across three key areas of resume improvement: **C
 - Make sure section headers are clear and bold, and that margins are not cramped.
 
 **Example:**  
-❌ Multiple font types and sizes  
+❌ Multiple font types and sizes\
 ✅ One clean, readable font (e.g., Calibri or Helvetica), consistent size (11–12pt), clear spacing
 
 **Deep Fix (3–5 hrs):**  
@@ -243,7 +243,7 @@ Below are quick and deep fixes across three key areas of resume improvement: **C
 - Rewrite your summary to clearly state your goal and top strengths.
 
   **Example:**  
-  ❌ "I am a hard-working individual"  
+  ❌ "I am a hard-working individual"\  
   ✅ "Aspiring data analyst with strong Python and Excel skills, seeking to apply data-driven insights to real-world problems."
 
 **Deep Fix (3–5 hrs):**  
