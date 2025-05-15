@@ -15,7 +15,7 @@ genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
 GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
-REDIRECT_URI = "http://localhost:8501"
+REDIRECT_URI = "https://resume-audit-pro.streamlit.app/"
 
 MAX_TEXT_LENGTH = 100_000
 COOLDOWN = 2
@@ -64,90 +64,89 @@ def extract_text_from_pdf(uploaded_file):
 def get_resume_feedback(resume_text):
     """Get AI feedback on resume"""
     prompt = f"""
-# Resume Optimization Blueprint: Executive-Level Analysis Framework  
-
-**Role:** Chief Talent Architect (20+ Years at Fortune 500/Tech Unicorns)  
-**Mission:** Transform resumes into interview-generating assets through tactical ATS hacks and executive storytelling  
-
----
-
-## 🔍 Performance Dashboard  
-| Metric                | Current | Target | Gap Analysis       |  
-|-----------------------|---------|--------|--------------------|  
-| ATS Parse Score       | 72/100  | 95+    | Critical headers missing |  
-| Human Scan Impact     | 2.8s    | 5s+    | Weak value proposition |  
-| Achievement Density   | 38%     | 75%+   | Excessive task lists |  
-| Strategic Alignment   | Low     | High   | Missing JD mirroring |  
+# Executive Resume Audit: Strategic Optimization Framework  
+**Role:** Senior Talent Strategist (20+ Years at Global Enterprises)  
+**Objective:** Convert resumes into interview-winning documents through ATS precision and executive narrative design  
 
 ---
 
-## 🚨 Nuclear-Grade Dealbreakers  
-1. **Career Narrative Collapse**  
-   - No CEO-style summary showing promotion velocity  
-   - Impact buried under responsibility lists  
-
-2. **ATS Poison Pill**  
-   - Graphics-laden header failing parser tests  
-   - Missing 6/8 JD primary keywords  
-
-3. **ROI Black Hole**  
-   - 92% of bullets lack metrics/scale context  
-   - Zero board-level visibility signals  
+## 📊 Performance Dashboard  
+| Metric                | Current Status | Target   | Priority Focus Areas       |  
+|-----------------------|----------------|----------|----------------------------|  
+| ATS Compliance        | 68/100         | 95+      | Missing core headers       |  
+| Human Scan Retention  | 2.1s           | 5s+      | Weak opening hook          |  
+| Achievement Ratio     | 41%            | 80%+     | Overemphasis on duties     |  
+| Strategic Mirroring   | Limited        | Exact    | JD keywords not integrated |  
 
 ---
 
-## ⚡ Threat Intelligence: ATS Kill Zones  
-| Risk Factor           | Severity | Evidence            |  
-|-----------------------|----------|---------------------|  
-| Keyword Starvation    | Critical | "Cloud Migration" x0 vs JD x5 |  
-| Section Fragmentation | High     | 3 different "Experience" labels |  
-| Parse Survival Rate   | 38%      | Header/font failures in Workday test |  
-| Machine Readability   | Poor     | 4 columns break text flow |  
+## ❗ Critical Risks (Immediate Action Required)  
+1. **Value Obscurity**  
+   - Career-defining achievements buried beneath routine tasks  
+   - No quantifiable business impact in 89% of role descriptions  
+
+2. **ATS Rejection Triggers**  
+   - Non-standard section titles ("Professional Journey" vs "Experience")  
+   - 7/10 required skills from JD missing in first page  
+
+3. **Career Narrative Gaps**  
+   - Unexplained 11-month gap formatted as generic consulting period  
+   - Progressive leadership story fragmented across roles  
 
 ---
 
-## 💼 Boardroom-Grade Optimization Matrix  
-| Lever               | Immediate Fix (30m)          | Power Move (3hr)               | Enterprise Play (8hr+)         |  
-|---------------------|------------------------------|--------------------------------|--------------------------------|  
-| **Value Engine**    | Convert tasks to ROI bullets | Build executive brand story    | Create JD-specific value matrix |  
-| **ATS Core**        | Standardize section headers  | Inject JD keywords naturally   | Build multi-JD variant system   |  
-| **Visual Hierarchy**| Simplify font stack          | Implement F-pattern layout     | Add skimmable achievement bars |  
-| **Credibility Stack**| Add promotions timeline     | Show dollarized impact         | Integrate media/testimonials   |  
+## 🔎 ATS Optimization Analysis  
+| Compliance Factor     | Status         | Evidence                  |  
+|-----------------------|----------------|---------------------------|  
+| Keyword Integration   | 42% Match      | "Digital Transformation" missing (JD mentions x6) |  
+| Section Integrity     | High Risk      | Mixed date formats (MM/YYYY vs YYYY-MM) |  
+| Parse Success Rate     | 51%            | Graphics cause header failure in Greenhouse test |  
+| Readability Score     | 3.8/5          | Dense text blocks reduce skimmability |  
 
 ---
 
-## 🏆 Fortune 500 Success Signature  
-**Top 1% Resume DNA:**  
-- 5s Hook: "Generated $2.3B in cloud savings through..."  
-- Power Pattern: Challenge > Action > Result (CAR)  
-- Board Fluency: EBITDA/OKR/NPV terminology  
-- Anti-Fragile Design: Passes 12+ ATS parsers  
+## 🛠️ Optimization Roadmap  
+| Focus Area          | Quick Adjustments (<1hr)      | Strategic Enhancements (2-4hr)     | Competitive Differentiators (5hr+)    |  
+|---------------------|-------------------------------|-------------------------------------|---------------------------------------|  
+| **Value Proposition** | Add 3 metrics-driven opening bullets | Build CAR (Challenge-Action-Result) narratives | Create JD-specific achievement matrix |  
+| **ATS Foundation**  | Standardize all section headers | Weave 5 JD keywords into summary    | Develop multi-version tracking system |  
+| **Visual Strategy** | Single-column reformatting    | Implement Z-pattern hierarchy       | Add interactive elements for digital  |  
+| **Career Story**    | Clarify employment timeline    | Show promotion velocity with impact  | Integrate leadership philosophy       |  
 
 ---
 
-## 🛠️ Executive Rebuild Kit  
-1. **Promotion Velocity Map**  
-   - Visual timeline showing role progression + biz impact  
-2. **Metric Injection Protocol**  
-   - Convert "managed team" → "Led 45-engineer team..."  
-3. **JD Assimilation Engine**  
-   - Mirror 3 company-specific values in summary  
+## 🏅 Success Benchmarks  
+**Top 1% Resume Standards:**  
+- 5-Second Hook: "Drove $560M revenue growth through..."  
+- ATS Armor: 100% keyword match in first page  
+- Executive Fluency: EBITDA/ROI/NPV alignment  
+- Retention Engineering: 8s+ average human scan time  
 
 ---
 
-## 🔥 Red Flag Demolition Crew  
-**Problem:** 18-month career gap post-COVID  
-**Fix:** "Strategic Sabbatical - Led AI upskilling initiative..."  
-
-**Problem:** Multiple <2-year roles  
-**Fix:** Cluster as "Consulting Engagements" with client wins  
+## 📌 Implementation Toolkit  
+1. **Achievement Extraction Protocol**  
+   - Convert "Managed projects" → "Delivered 22% cost savings across 14 projects..."  
+2. **JD Mirroring Technique**  
+   - Embed 3 company values into professional summary  
+3. **Gap Resolution Framework**  
+   - Reframe career break: "Led AI certification program during industry transition"  
 
 ---
 
-**Delivery Format:**  
-- Strict MD tables/headers (NO backticks)  
-- Data-driven insights only (NO fluff)  
-- C-suite ready terminology  
+## 🚩 Red Flag Mitigation  
+**Issue:** Multiple short-term roles (2020-2022)  
+**Solution:** Cluster as "Turnaround Consultations: Rescued $17M contract for Fortune 500 client"  
+
+**Issue:** Missing executive keywords  
+**Solution:** Insert "P&L Leadership" and "Global Scaling" in first 3 bullet points  
+
+---
+
+**Delivery Standards:**  
+- Clean markdown structure (no code blocks)  
+- Data-first insights with actionable tiers  
+- Boardroom-level strategic framing  
 
 Resume:
 \"\"\"
@@ -159,7 +158,7 @@ Resume:
         response = model.generate_content(prompt)
         return response.text
     except Exception as e:
-        st.error(f"Gemini Error: {e}")
+        st.error(f"IE: {e}")
         return None
 
 def main():
