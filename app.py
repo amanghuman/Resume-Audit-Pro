@@ -200,8 +200,6 @@ Each issue should include an **example of the original content** and a **revised
 
 Below are quick and deep fixes across three key areas of resume improvement: **Content**, **Design**, and **Strategy**.
 
----
-
 ### 📌 Content
 
 **Quick Fix (≤1 hr):**  
@@ -251,7 +249,6 @@ Below are quick and deep fixes across three key areas of resume improvement: **C
 - Prioritize the most relevant experiences—even if not in reverse chronological order.  
 - Refine the resume narrative to reflect your career goals and unique value proposition.
 
----
 ---
 
 ## 🎯 Positioning Benchmark for {job_field}
