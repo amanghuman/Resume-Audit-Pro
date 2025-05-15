@@ -2,19 +2,15 @@
 
 import streamlit as st
 import pdfplumber
-import os
 import google.generativeai as genai
-from dotenv import load_dotenv
 from time import time
 import json
 from requests_oauthlib import OAuth2Session
 
-# --- Load Configuration ---
-load_dotenv()
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+genai.configure(api_key=st.secrets.gemini.api_key)
 
-GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
-GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
+GOOGLE_CLIENT_ID = st.secrets.google.client_id
+GOOGLE_CLIENT_SECRET = st.secrets.google.client_secret
 REDIRECT_URI = "https://resume-audit-pro.streamlit.app/"
 
 MAX_TEXT_LENGTH = 100_000
