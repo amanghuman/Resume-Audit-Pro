@@ -12,6 +12,118 @@ genai.configure(api_key=st.secrets.gemini.api_key)
 MAX_TEXT_LENGTH = 100_000
 COOLDOWN = 2
 
+# Custom CSS
+def local_css():
+    st.markdown("""
+    <style>
+        /* Main container */
+        .main {
+            padding: 2rem;
+        }
+        
+        /* Headers */
+        h1 {
+            color: #1E88E5;
+            font-size: 2.5rem !important;
+            font-weight: 700 !important;
+            margin-bottom: 2rem !important;
+        }
+        h2 {
+            color: #0D47A1;
+            font-size: 1.8rem !important;
+            font-weight: 600 !important;
+            margin-top: 2rem !important;
+        }
+        h3 {
+            color: #1565C0;
+            font-size: 1.4rem !important;
+            margin-top: 1.5rem !important;
+        }
+        
+        /* Custom containers */
+        .info-box {
+            background-color: #E3F2FD;
+            border-left: 5px solid #1E88E5;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0.5rem;
+        }
+        
+        .success-box {
+            background-color: #E8F5E9;
+            border-left: 5px solid #43A047;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0.5rem;
+        }
+        
+        .warning-box {
+            background-color: #FFF3E0;
+            border-left: 5px solid #FB8C00;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0.5rem;
+        }
+        
+        /* Buttons */
+        .stButton button {
+            background-color: #1E88E5;
+            color: white;
+            font-weight: 600;
+            padding: 0.5rem 2rem;
+            border-radius: 0.5rem;
+            border: none;
+            transition: all 0.3s;
+        }
+        .stButton button:hover {
+            background-color: #1565C0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        /* File uploader */
+        .uploadedFile {
+            border: 2px dashed #1E88E5;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        th {
+            background-color: #E3F2FD;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        td {
+            padding: 0.75rem;
+            border-top: 1px solid #E0E0E0;
+        }
+        
+        /* Feedback sections */
+        .feedback-section {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin: 1.5rem 0;
+        }
+        
+        /* Footer */
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #E0E0E0;
+            text-align: center;
+            color: #757575;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+
 def init_session_state():
     """Initialize session state variables"""
     if "last_time" not in st.session_state:
@@ -123,14 +235,40 @@ Resume:
         return None
 
 def main():
-    st.set_page_config(page_title="Resume Audit Pro", page_icon="📄", layout="wide")
-    st.title("📄 Resume Audit Pro")
+    t.set_page_config(
+        page_title="Resume Audit Pro",
+        page_icon="📄",
+        layout="wide",
+        initial_sidebar_state="collapsed"
+    )
+    
+    # Apply custom CSS
+    local_css()
     
     # Initialize session state
     init_session_state()
     
-    # File upload
-    uploaded_file = st.file_uploader("📤 Upload Resume (PDF only)", type="pdf")
+    # Header section
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        st.markdown("<h1 style='text-align: center;'>📄 Resume Audit Pro</h1>", unsafe_allow_html=True)
+        st.markdown("""
+        <div class='info-box'>
+            Get professional feedback on your resume with AI-powered analysis. 
+            Our tool evaluates your resume for ATS compatibility, content strength, and industry alignment.
+        </div>
+        """, unsafe_allow_html=True)
+    
+    # Main content
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    # Step 1: File Upload
+    st.markdown("""
+    <h2>📤 Step 1: Upload Your Resume</h2>
+    <p>Upload your resume in PDF format for analysis.</p>
+    """, unsafe_allow_html=True)
+    
+    uploaded_file = st.file_uploader("", type="pdf")
     
     if uploaded_file:
         if uploaded_file.name != st.session_state.last_uploaded_filename:
@@ -142,46 +280,92 @@ def main():
         if not st.session_state.resume_text:
             resume_text = extract_text_from_pdf(uploaded_file)
             if not resume_text:
-                st.error("❌ Couldn't extract text from PDF.")
+               st.markdown("""
+                <div class='warning-box'>
+                    ❌ Could not extract text from PDF. Please ensure your PDF contains selectable text.
+                </div>
+                """, unsafe_allow_html=True)
                 st.stop()
             st.session_state.resume_text = resume_text
-            st.success("✅ Resume uploaded successfully!")
+            st.markdown("""
+            <div class='success-box'>
+                ✅ Resume uploaded successfully!
+            </div>
+            """, unsafe_allow_html=True)
         
-        # Job field input
-        job_field = st.text_input("🎯 Enter the job title or field you're applying for:", 
-                                 placeholder="e.g., Software Engineer, Data Scientist, Marketing Manager")
+        # Step 2: Job Field Input
+        st.markdown("""
+        <h2>🎯 Step 2: Specify Target Role</h2>
+        <p>Enter the job title or field you're applying for to receive tailored feedback.</p>
+        """, unsafe_allow_html=True)
         
-        # Audit button
-        if st.button("🔍 Audit Resume"):
+        job_field = st.text_input(
+            "",
+            placeholder="e.g., Software Engineer, Data Scientist, Marketing Manager"
+        )
+        
+        # Step 3: Audit Button
+        st.markdown("""
+        <h2>🔍 Step 3: Run Analysis</h2>
+        <p>Click the button below to analyze your resume.</p>
+        """, unsafe_allow_html=True)
+        
+        col1, col2, col3 = st.columns([1, 1, 1])
+        with col2:
+            audit_button = st.button("Analyze Resume", use_container_width=True)
+        
+       if audit_button:
             if not job_field:
-                st.error("❌ Please enter the job field you're applying for.")
+                st.markdown("""
+                <div class='warning-box'>
+                    ❌ Please enter the job field you're applying for.
+                </div>
+                """, unsafe_allow_html=True)
                 st.stop()
             
             if time() - st.session_state.last_time < COOLDOWN:
-                st.warning("⏳ Please wait a moment before running another audit.")
+                st.markdown("""
+                <div class='warning-box'>
+                    ⏳ Please wait a moment before running another analysis.
+                </div>
+                """, unsafe_allow_html=True)
                 st.stop()
             
             with st.spinner("🧠 Analyzing your resume..."):
                 feedback = get_resume_feedback(st.session_state.resume_text, job_field)
                 if not feedback:
-                    st.error("🤖 Audit failed.")
+                    st.markdown("""
+                    <div class='warning-box'>
+                        🤖 Analysis failed. Please try again.
+                    </div>
+                    """, unsafe_allow_html=True)
                     st.stop()
                 
                 st.session_state.feedback = feedback
                 st.session_state.last_time = time()
                 
-                st.success("✅ Audit complete!")
+                st.markdown("""
+                <div class='success-box'>
+                    ✅ Analysis complete! See detailed feedback below.
+                </div>
+                """, unsafe_allow_html=True)
     
     # Display feedback
     if st.session_state.feedback:
-        st.markdown("## 🔍 AI Resume Feedback")
+        st.markdown("<div class='feedback-section'>", unsafe_allow_html=True)
+        st.markdown("## 🔍 Resume Analysis Results")
         feedback_text = st.session_state.feedback.replace("\"\"\"", "").strip()
         st.markdown(feedback_text)
+        st.markdown("</div>", unsafe_allow_html=True)
+
     
     # Footer
-    st.markdown("---")
-    st.markdown("📝 Created by [Aman Ghuman]")#(https://twitter.com/kaiweng) | [GitHub](https://github.com/kaiweng/resume-audit-pro)")
-
+    t.markdown("""
+    <div class='footer'>
+        📝 Created by Aman Ghuman</a> | 
+        <a href='https://github.com/placeholder/resume-audit-pro'>GitHub</a>
+    </div>
+    """, unsafe_allow_html=True)
 if __name__ == "__main__":
     main()
 
