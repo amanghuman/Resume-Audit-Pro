@@ -209,6 +209,7 @@ Below are quick and deep fixes across three key areas of resume improvement: **C
 **Use this format:**
 
 ❌ *[Original bullet from resume]*  
+
 ✅ *[Improved version using action verb, clarity, and result]*
 
 **Deep Fix (3–5 hrs):**  
@@ -225,8 +226,10 @@ Below are quick and deep fixes across three key areas of resume improvement: **C
 - Make sure section headers are clear and bold, and that margins are not cramped.
 
 **Example (based on resume):**  
-❌ Multiple font sizes used in ‘Experience’ section  
-✅ Use one consistent font (e.g., Calibri 11pt) and align all bullets to left
+
+❌ *Multiple font sizes used in ‘Experience’ section*
+
+✅ *Use one consistent font (e.g., Calibri 11pt) and align all bullets to left*
 
 **Deep Fix (3–5 hrs):**  
 - Apply a modern, ATS-friendly layout (e.g., left-aligned layout, no columns or graphics).  
@@ -244,6 +247,7 @@ Below are quick and deep fixes across three key areas of resume improvement: **C
 **Use this format:**
 
 ❌ *[Original summary from resume]*  
+
 ✅ *[Improved version with clearer career goals and targeted language]*
 
 **Deep Fix (3–5 hrs):**  
