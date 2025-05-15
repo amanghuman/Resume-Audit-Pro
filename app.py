@@ -235,7 +235,7 @@ Resume:
         return None
 
 def main():
-    t.set_page_config(
+    st.set_page_config(
         page_title="Resume Audit Pro",
         page_icon="📄",
         layout="wide",
@@ -268,19 +268,20 @@ def main():
     <p>Upload your resume in PDF format for analysis.</p>
     """, unsafe_allow_html=True)
     
-    uploaded_file = st.file_uploader("", type="pdf")
+    uploaded_file = st.file_uploader("Upload your resume (PDF only)", type="pdf", label_visibility="collapsed")
     
     if uploaded_file:
         if uploaded_file.name != st.session_state.last_uploaded_filename:
             st.session_state.last_uploaded_filename = uploaded_file.name
             st.session_state.resume_text = None
             st.session_state.feedback = None
+            st.session_state.analyze_clicked = False  # Reset analyze button state
         
         # Extract text from PDF
         if not st.session_state.resume_text:
             resume_text = extract_text_from_pdf(uploaded_file)
             if not resume_text:
-               st.markdown("""
+                st.markdown("""
                 <div class='warning-box'>
                     ❌ Could not extract text from PDF. Please ensure your PDF contains selectable text.
                 </div>
@@ -300,8 +301,9 @@ def main():
         """, unsafe_allow_html=True)
         
         job_field = st.text_input(
-            "",
-            placeholder="e.g., Software Engineer, Data Scientist, Marketing Manager"
+            "Enter job title or field",
+            placeholder="e.g., Software Engineer, Data Scientist, Marketing Manager",
+            label_visibility="collapsed"
         )
         
         # Step 3: Audit Button
@@ -309,18 +311,24 @@ def main():
         <h2>🔍 Step 3: Run Analysis</h2>
         <p>Click the button below to analyze your resume.</p>
         """, unsafe_allow_html=True)
+
+        # Initialize analyze_clicked in session state if it doesn't exist
+        if 'analyze_clicked' not in st.session_state:
+            st.session_state.analyze_clicked = False
         
         col1, col2, col3 = st.columns([1, 1, 1])
         with col2:
-            audit_button = st.button("Analyze Resume", use_container_width=True)
+            if st.button("Analyze Resume", use_container_width=True, key="analyze_button"):
+                st.session_state.analyze_clicked = True
         
-       if audit_button:
+        if st.session_state.analyze_clicked:
             if not job_field:
                 st.markdown("""
                 <div class='warning-box'>
                     ❌ Please enter the job field you're applying for.
                 </div>
                 """, unsafe_allow_html=True)
+                st.session_state.analyze_clicked = False  # Reset the button state
                 st.stop()
             
             if time() - st.session_state.last_time < COOLDOWN:
@@ -329,6 +337,7 @@ def main():
                     ⏳ Please wait a moment before running another analysis.
                 </div>
                 """, unsafe_allow_html=True)
+                st.session_state.analyze_clicked = False  # Reset the button state
                 st.stop()
             
             with st.spinner("🧠 Analyzing your resume..."):
@@ -339,6 +348,7 @@ def main():
                         🤖 Analysis failed. Please try again.
                     </div>
                     """, unsafe_allow_html=True)
+                    st.session_state.analyze_clicked = False  # Reset the button state
                     st.stop()
                 
                 st.session_state.feedback = feedback
@@ -349,23 +359,23 @@ def main():
                     ✅ Analysis complete! See detailed feedback below.
                 </div>
                 """, unsafe_allow_html=True)
+                st.session_state.analyze_clicked = False  # Reset for next analysis
     
     # Display feedback
     if st.session_state.feedback:
-        st.markdown("<div class='feedback-section'>", unsafe_allow_html=True)
+        #st.markdown("<div class='feedback-section'>", unsafe_allow_html=True)
         st.markdown("## 🔍 Resume Analysis Results")
         feedback_text = st.session_state.feedback.replace("\"\"\"", "").strip()
         st.markdown(feedback_text)
         st.markdown("</div>", unsafe_allow_html=True)
-
     
     # Footer
-    t.markdown("""
+    st.markdown("""
     <div class='footer'>
-        📝 Created by Aman Ghuman</a> | 
-        <a href='https://github.com/placeholder/resume-audit-pro'>GitHub</a>
+        📝 Created by <a href='https://twitter.com/kaiweng'>Aman Ghuman</a> | 
+        <a href='https://github.com/kaiweng/resume-audit-pro'>GitHub</a>
     </div>
     """, unsafe_allow_html=True)
+
 if __name__ == "__main__":
     main()
-
