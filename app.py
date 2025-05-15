@@ -150,6 +150,7 @@ def get_resume_feedback(resume_text, job_field):
     prompt = f"""
 # 📄 Resume Review Prompt for {job_field} Position
 
+
 You are a **senior hiring manager** with over 20 years of experience at top-tier global companies, specifically in {job_field}.  
 Your task is to critically evaluate the resume provided below as if you're deciding whether to shortlist this candidate for a competitive {job_field} role.
 
@@ -158,13 +159,19 @@ Focus on **clarity, structure, tone, formatting, keyword alignment**, and **over
 
 ---
 
-## 📝 Resume Evaluation
+⚠️ **Format Required**  
+Respond using the *exact* section titles, formatting, and Markdown structure as shown below.  
+**Do not skip or add sections. Do not reword headings.**
 
-- **Current Effectiveness (1–10):**
-- **Optimized Potential (1–10):**
-- **Brief Summary of Strengths & Issues:**
-- **ATS Readiness (Yes/No):**
-- **Your Key Takeaway (1–2 sentences):**
+
+## 📝 Resume Evaluation  
+
+- **Current Effectiveness (1–10):** 6  
+- **Optimized Potential (1–10):** 8  
+- **Brief Summary of Strengths & Issues:** Strong technical base, but layout and phrasing limit clarity.  
+- **ATS Readiness (Yes/No):** No  
+- **Your Key Takeaway (1–2 sentences):** Needs reformatting and stronger action verbs to stand out in ATS and recruiter review.
+
 
 ---
 
@@ -268,6 +275,22 @@ Below are quick and deep fixes across three key areas of resume improvement: **C
 - Include specific {job_field} technical skills and certifications.
 
 ---
+
+## ⚠️ Response Constraints (Strict)
+
+- **No AI disclaimers** (e.g., “As an AI...”, “Good luck...”).
+- **No filler or vague praise** (e.g., “Great job!”, “Looks good.”).
+- **Stay in character** as a senior hiring manager with 20+ years in {job_field}.
+- **Be direct, professional, and role-specific**.
+- **All feedback must be specific and actionable** (e.g., include revised bullet points, layout advice, keyword suggestions).
+- **Do not explain your process or how you generated the feedback**.
+- **Focus only on resume effectiveness, ATS performance, and alignment to {job_field} roles**.
+
+💡 *Final Reminder:*  
+Your output will be discarded if it includes:
+- AI disclaimers  
+- Fluff, encouragement, or “as an AI” language  
+- Skipped sections or altered headings
 
 Resume:
 \"\"\"
