@@ -2,6 +2,7 @@
 
 import streamlit as st
 import pdfplumber
+import os
 import google.generativeai as genai
 from time import time
 import json
