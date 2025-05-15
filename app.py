@@ -194,12 +194,60 @@ Each issue should include an **example of the original content** and a **revised
 
 ## 🔧 Fix Recommendations
 
-| Category   | Quick Fix (≤1 hr)                          | Deep Fix (3–5 hrs)                          |
-|------------|--------------------------------------------|---------------------------------------------|
-| **Content** | Sharpen bullet points, add action verbs    | Rework descriptions to show results         |
-| **Design**  | Standardize fonts, improve spacing         | Apply modern, clean professional layout     |
-| **Strategy**| Add relevant keywords, tighten summary     | Tailor resume to specific job goals         |
+Below are quick and deep fixes across three key areas of resume improvement: **Content**, **Design**, and **Strategy**.
 
+---
+
+### 📌 Content
+
+**Quick Fix (≤1 hr):**  
+- Rewrite bullet points using strong action verbs (e.g., "Led", "Created", "Improved").
+- Avoid passive or vague phrases like “Worked on” or “Helped with.”
+  
+  **Example:**  
+  ❌ "Helped with marketing tasks"  
+  ✅ "Assisted in planning and executing 3 marketing campaigns, increasing engagement by 20%"
+
+**Deep Fix (3–5 hrs):**  
+- Reframe each experience to show outcomes and impact. Use the **[Action] + [What you did] + [Result]** format.  
+- Add quantifiable metrics (e.g., “increased sales by 15%,” “managed budget of $10K”).  
+- Tailor descriptions to reflect competencies relevant to the target role or industry.
+
+---
+
+### 🎨 Design
+
+**Quick Fix (≤1 hr):**  
+- Use consistent fonts, spacing, and alignment.  
+- Make sure section headers are clear and bold, and that margins are not cramped.
+
+**Example:**  
+❌ Multiple font types and sizes  
+✅ One clean, readable font (e.g., Calibri or Helvetica), consistent size (11–12pt), clear spacing
+
+**Deep Fix (3–5 hrs):**  
+- Apply a modern, ATS-friendly layout (e.g., left-aligned layout, no columns or graphics).  
+- Use section hierarchy (Summary → Skills → Experience → Education → Projects).  
+- Remove clutter like icons, photos, or complex visual elements that confuse ATS parsing.
+
+---
+
+### 🎯 Strategy
+
+**Quick Fix (≤1 hr):**  
+- Add 4–6 keywords from a relevant job description (skills, tools, roles).
+- Rewrite your summary to clearly state your goal and top strengths.
+
+  **Example:**  
+  ❌ "I am a hard-working individual"  
+  ✅ "Aspiring data analyst with strong Python and Excel skills, seeking to apply data-driven insights to real-world problems."
+
+**Deep Fix (3–5 hrs):**  
+- Research 2–3 target job listings and align resume language and structure to match.  
+- Prioritize the most relevant experiences—even if not in reverse chronological order.  
+- Refine the resume narrative to reflect your career goals and unique value proposition.
+
+---
 ---
 
 ## 🎯 Positioning Benchmark for {job_field}
