@@ -443,8 +443,7 @@ def main():
     # Footer
     st.markdown("""
     <div class='footer'>
-        📝 Created by <a href='https://twitter.com/kaiweng'>Aman Ghuman</a> | 
-        <a href='https://github.com/kaiweng/resume-audit-pro'>GitHub</a>
+        📝 Created by Aman Ghuman
     </div>
     """, unsafe_allow_html=True)
 
