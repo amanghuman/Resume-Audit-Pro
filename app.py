@@ -4,24 +4,13 @@ import streamlit as st
 import pdfplumber
 import os
 import google.generativeai as genai
+from dotenv import load_dotenv
 from time import time
-import json
-from requests_oauthlib import OAuth2Session
 
 genai.configure(api_key=st.secrets.gemini.api_key)
 
-GOOGLE_CLIENT_ID = st.secrets.google.client_id
-GOOGLE_CLIENT_SECRET = st.secrets.google.client_secret
-REDIRECT_URI = "https://resume-audit-pro.streamlit.app/"
-
 MAX_TEXT_LENGTH = 100_000
 COOLDOWN = 2
-TOKEN_FILE = "users.json"
-
-# --- Google OAuth Setup ---
-AUTHORIZATION_BASE_URL = "https://accounts.google.com/o/oauth2/auth"
-TOKEN_URL = "https://oauth2.googleapis.com/token"
-SCOPE = ["openid", "https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.profile"]
 
 def init_session_state():
     """Initialize session state variables"""
@@ -34,20 +23,6 @@ def init_session_state():
     if "last_uploaded_filename" not in st.session_state:
         st.session_state.last_uploaded_filename = None
 
-def load_user_tokens():
-    """Load or initialize user tokens"""
-    if not os.path.exists(TOKEN_FILE):
-        with open(TOKEN_FILE, "w") as f:
-            json.dump({}, f)
-    
-    with open(TOKEN_FILE, "r") as f:
-        return json.load(f)
-
-def save_users(users):
-    """Save user data to file"""
-    with open(TOKEN_FILE, "w") as f:
-        json.dump(users, f, indent=2)
-
 def extract_text_from_pdf(uploaded_file):
     """Extract text from uploaded PDF file"""
     try:
@@ -58,15 +33,15 @@ def extract_text_from_pdf(uploaded_file):
         st.error(f"PDF Error: {e}")
         return None
 
-def get_resume_feedback(resume_text):
-    """Get AI feedback on resume"""
+def get_resume_feedback(resume_text, job_field):
+    """Get Feedback on resume"""
     prompt = f"""
-# 📄 Resume Review Prompt
+# 📄 Resume Review Prompt for {job_field} Position
 
-You are a **senior hiring manager** with over 20 years of experience at top-tier global companies.  
-Your task is to critically evaluate the resume provided below as if you're deciding whether to shortlist this candidate for a competitive role.
+You are a **senior hiring manager** with over 20 years of experience at top-tier global companies, specifically in {job_field}.  
+Your task is to critically evaluate the resume provided below as if you're deciding whether to shortlist this candidate for a competitive {job_field} role.
 
-Your feedback should be **professional, practical, and tailored for a real-world job search**.  
+Your feedback should be **professional, practical, and tailored for a real-world job search in {job_field}**.  
 Focus on **clarity, structure, tone, formatting, keyword alignment**, and **overall impact**—with an eye on how well this resume would perform both with human recruiters and Applicant Tracking Systems (ATS).
 
 ---
@@ -83,8 +58,8 @@ Focus on **clarity, structure, tone, formatting, keyword alignment**, and **over
 
 ## 🚨 Major Issues (Red Flags)
 
-List critical issues that could hurt the resume’s chances, along with suggestions for improvement.  
-Each issue should include an **example of the original content** and a **revised version**.
+List critical issues that could hurt the resume's chances, along with suggestions for improvement.  
+Each issue should include an **example of the original content** and a **revised version**, specifically for {job_field} positions.
 
 | Issue                       | Original Example                                      | Improved Example                                      |
 |----------------------------|-------------------------------------------------------|--------------------------------------------------------|
@@ -97,7 +72,7 @@ Each issue should include an **example of the original content** and a **revised
 
 ---
 
-## ⚙️ ATS Compatibility Check
+## ⚙️ ATS Compatibility Check for {job_field}
 
 - **Missing or Weak Keywords:**  
 - **Design/Layout Barriers:**  
@@ -115,21 +90,22 @@ Each issue should include an **example of the original content** and a **revised
 
 ---
 
-## 🎯 Positioning Benchmark
+## 🎯 Positioning Benchmark for {job_field}
 
 - **Target Level:** (e.g., Internship / Entry-Level / Mid-Level)
 - **Resume Tier:** Top 10% / Average / Needs Work
-- **One-Line Summary:** (e.g., “Strong foundation, needs polish for ATS and visual clarity.”)
+- **One-Line Summary:** (e.g., "Strong foundation, needs polish for ATS and visual clarity.")
 
 ---
 
-## ✅ Suggestions for Improvement (General Tips for Students)
+## ✅ Key {job_field} Industry Tips
 
 - Keep it to one page unless you have over 5 years of experience.
 - Prioritize results and impact (quantify wherever possible).
-- Align language and structure with job descriptions.
+- Align language and structure with {job_field} job descriptions.
 - Avoid overly designed templates—ATS may not parse them well.
 - Proofread for grammar, consistency, and tone.
+- Include specific {job_field} technical skills and certifications.
 
 ---
 
@@ -143,7 +119,7 @@ Resume:
         response = model.generate_content(prompt)
         return response.text
     except Exception as e:
-        st.error(f"IE: {e}")
+        st.error(f"Gemini Error: {e}")
         return None
 
 def main():
@@ -153,79 +129,59 @@ def main():
     # Initialize session state
     init_session_state()
     
-    # Load user data
-    users = load_user_tokens()
-    user_email = None
-    
-    # Handle Google OAuth
-    if "auth_code" not in st.session_state:
-        oauth = OAuth2Session(GOOGLE_CLIENT_ID, redirect_uri=REDIRECT_URI, scope=SCOPE)
-        authorization_url, state = oauth.authorization_url(AUTHORIZATION_BASE_URL, access_type="offline", prompt="select_account")
-        st.markdown(f"[🔐 Sign in with Google]({authorization_url})")
-        
-        if "code" in st.query_params:
-            st.session_state.auth_code = st.query_params["code"]
-    
-    if "auth_code" in st.session_state and not st.session_state.get("access_token"):
-        oauth = OAuth2Session(GOOGLE_CLIENT_ID, redirect_uri=REDIRECT_URI, scope=SCOPE)
-        token = oauth.fetch_token(
-            TOKEN_URL,
-            client_secret=GOOGLE_CLIENT_SECRET,
-            code=st.session_state.auth_code
-        )
-        st.session_state.access_token = token["access_token"]
-    
-    # Get user info if logged in
-    if st.session_state.get("access_token"):
-        import requests
-        headers = {"Authorization": f"Bearer {st.session_state.access_token}"}
-        profile = requests.get("https://www.googleapis.com/oauth2/v1/userinfo", headers=headers).json()
-        user_email = profile["email"]
-        user_name = profile.get("name", "User")
-        
-        st.success(f"👋 Welcome {user_name}")
-        if user_email not in users:
-            users[user_email] = {"tokens": 3, "name": user_name}
-            save_users(users)
-        st.markdown(f"🎟️ Tokens Remaining: `{users[user_email]['tokens']}`")
-    
-    # File upload and processing
+    # File upload
     uploaded_file = st.file_uploader("📤 Upload Resume (PDF only)", type="pdf")
     
     if uploaded_file:
-        if time() - st.session_state.last_time < COOLDOWN:
-            st.warning("⏳ Wait before next submission")
-            st.stop()
-        
         if uploaded_file.name != st.session_state.last_uploaded_filename:
             st.session_state.last_uploaded_filename = uploaded_file.name
+            st.session_state.resume_text = None
+            st.session_state.feedback = None
         
-        with st.spinner("🧠 Auditing..."):
+        # Extract text from PDF
+        if not st.session_state.resume_text:
             resume_text = extract_text_from_pdf(uploaded_file)
             if not resume_text:
-                st.error("❌ Couldn't extract text.")
+                st.error("❌ Couldn't extract text from PDF.")
                 st.stop()
-            
-            feedback = get_resume_feedback(resume_text)
-            if not feedback:
-                st.error("🤖 Audit failed.")
-                st.stop()
-            
             st.session_state.resume_text = resume_text
-            st.session_state.feedback = feedback
-            st.session_state.last_time = time()
+            st.success("✅ Resume uploaded successfully!")
+        
+        # Job field input
+        job_field = st.text_input("🎯 Enter the job title or field you're applying for:", 
+                                 placeholder="e.g., Software Engineer, Data Scientist, Marketing Manager")
+        
+        # Audit button
+        if st.button("🔍 Audit Resume"):
+            if not job_field:
+                st.error("❌ Please enter the job field you're applying for.")
+                st.stop()
             
-            st.success("✅ Audit complete!")
+            if time() - st.session_state.last_time < COOLDOWN:
+                st.warning("⏳ Please wait a moment before running another audit.")
+                st.stop()
+            
+            with st.spinner("🧠 Analyzing your resume..."):
+                feedback = get_resume_feedback(st.session_state.resume_text, job_field)
+                if not feedback:
+                    st.error("🤖 Audit failed.")
+                    st.stop()
+                
+                st.session_state.feedback = feedback
+                st.session_state.last_time = time()
+                
+                st.success("✅ Audit complete!")
     
     # Display feedback
     if st.session_state.feedback:
-        st.markdown("## 🔍 Resume Feedback")
+        st.markdown("## 🔍 AI Resume Feedback")
         feedback_text = st.session_state.feedback.replace("\"\"\"", "").strip()
         st.markdown(feedback_text)
     
     # Footer
     st.markdown("---")
-    st.markdown("📝 Created by [Aman Ghuman]")#(https://twitter.com/kaiweng) | [GitHub](https://github.com/kaiweng/resume-audit-pro) | [Buy Tokens](/buy)"
+    st.markdown("📝 Created by [Aman Ghuman]")#(https://twitter.com/kaiweng) | [GitHub](https://github.com/kaiweng/resume-audit-pro)")
 
 if __name__ == "__main__":
     main()
+
