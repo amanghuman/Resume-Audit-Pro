@@ -206,11 +206,10 @@ Below are quick and deep fixes across three key areas of resume improvement: **C
 - Rewrite bullet points using strong action verbs (e.g., "Led", "Created", "Improved").
 - Avoid passive or vague phrases like “Worked on” or “Helped with.”
   
-  **Example:**
-  
-  ❌ "Helped with marketing tasks"  
-  
-  ✅ "Assisted in planning and executing 3 marketing campaigns, increasing engagement by 20%"
+**Use this format:**
+
+❌ *[Original bullet from resume]*  
+✅ *[Improved version using action verb, clarity, and result]*
 
 **Deep Fix (3–5 hrs):**  
 - Reframe each experience to show outcomes and impact. Use the **[Action] + [What you did] + [Result]** format.  
@@ -225,11 +224,9 @@ Below are quick and deep fixes across three key areas of resume improvement: **C
 - Use consistent fonts, spacing, and alignment.  
 - Make sure section headers are clear and bold, and that margins are not cramped.
 
-**Example:** 
-
-❌ Multiple font types and sizes
-
-✅ One clean, readable font (e.g., Calibri or Helvetica), consistent size (11–12pt), clear spacing
+**Example (based on resume):**  
+❌ Multiple font sizes used in ‘Experience’ section  
+✅ Use one consistent font (e.g., Calibri 11pt) and align all bullets to left
 
 **Deep Fix (3–5 hrs):**  
 - Apply a modern, ATS-friendly layout (e.g., left-aligned layout, no columns or graphics).  
@@ -244,11 +241,10 @@ Below are quick and deep fixes across three key areas of resume improvement: **C
 - Add 4–6 keywords from a relevant job description (skills, tools, roles).
 - Rewrite your summary to clearly state your goal and top strengths.
 
-  **Example:**  
-  
-  ❌ "I am a hard-working individual"
-  
-  ✅ "Aspiring data analyst with strong Python and Excel skills, seeking to apply data-driven insights to real-world problems."
+**Use this format:**
+
+❌ *[Original summary from resume]*  
+✅ *[Improved version with clearer career goals and targeted language]*
 
 **Deep Fix (3–5 hrs):**  
 - Research 2–3 target job listings and align resume language and structure to match.  
