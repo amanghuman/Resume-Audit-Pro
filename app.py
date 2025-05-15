@@ -83,8 +83,17 @@ Focus on **clarity, structure, tone, formatting, keyword alignment**, and **over
 
 ## 🚨 Major Issues (Red Flags)
 
-List 3–5 critical issues that could hurt the resume’s chances  
-(e.g., vague bullet points, unclear layout, irrelevant content).
+List critical issues that could hurt the resume’s chances, along with suggestions for improvement.  
+Each issue should include an **example of the original content** and a **revised version**.
+
+| Issue                       | Original Example                                      | Improved Example                                      |
+|----------------------------|-------------------------------------------------------|--------------------------------------------------------|
+| Vague Bullet Point         | "Worked on team projects"                             | "Collaborated with 4-person team to develop a web app used by 200+ students" |
+| Weak Action Verb           | "Responsible for social media"                        | "Managed and grew Instagram following by 30% in 3 months" |
+| No Quantifiable Impact     | "Helped with data entry"                              | "Entered and verified 1,200+ records with 99.8% accuracy over 2 months" |
+| Irrelevant Information     | "High school science fair winner" (on college resume) | — *(Remove if not relevant to job or recent)*          |
+| Unclear Layout             | Mixed fonts, inconsistent spacing                     | Use a clean, consistent layout with clear section headers |
+
 
 ---
 
@@ -210,7 +219,7 @@ def main():
     
     # Display feedback
     if st.session_state.feedback:
-        st.markdown("## 🔍 AI Resume Feedback")
+        st.markdown("## 🔍 Resume Feedback")
         feedback_text = st.session_state.feedback.replace("\"\"\"", "").strip()
         st.markdown(feedback_text)
     
