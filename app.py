@@ -241,7 +241,7 @@ def main():
     
     # Footer
     st.markdown("---")
-    st.markdown("📝 Created by [Aman Ghuman](https://twitter.com/kaiweng) | [GitHub](https://github.com/kaiweng/resume-audit-pro) | [Buy Tokens](/buy)")
+    st.markdown("📝 Created by [Aman Ghuman]")#(https://twitter.com/kaiweng) | [GitHub](https://github.com/kaiweng/resume-audit-pro) | [Buy Tokens](/buy)"
 
 if __name__ == "__main__":
     main()
