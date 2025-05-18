@@ -16,18 +16,19 @@ COOLDOWN = 2
 def local_css():
     st.markdown("""
     <style>
-        /* Dark theme colors */
+        /* Dark theme colors - Enhanced contrast */
         :root {
-            --bg-color: #1E1E1E;
-            --text-color: #E0E0E0;
-            --primary-color: #7289DA;
-            --secondary-color: #4E5D94;
-            --accent-color: #99AAB5;
-            --success-color: #43B581;
-            --warning-color: #FAA61A;
-            --error-color: #F04747;
-            --card-bg: #2C2F33;
-            --border-color: #40444B;
+            --bg-color: #1A1B1E;
+            --text-color: #FFFFFF;
+            --primary-color: #8C9EFF;
+            --secondary-color: #536DFE;
+            --accent-color: #B2B9FF;
+            --success-color: #69F0AE;
+            --warning-color: #FFD740;
+            --error-color: #FF5252;
+            --card-bg: #2D2E32;
+            --border-color: #404246;
+            --hover-color: #3A3B3F;
         }
 
         /* Main container */
@@ -37,174 +38,197 @@ def local_css():
             padding: 2rem;
         }
         
-        /* Headers */
+        /* Headers - Improved visibility */
         h1 {
             color: var(--primary-color) !important;
-            font-size: 2.8rem !important;
+            font-size: 3rem !important;
             font-weight: 700 !important;
             margin-bottom: 2rem !important;
-            text-shadow: 0 0 10px rgba(114, 137, 218, 0.3);
+            text-shadow: 0 0 20px rgba(140, 158, 255, 0.3);
+            letter-spacing: 0.5px;
         }
         h2 {
             color: var(--accent-color) !important;
             font-size: 2rem !important;
             font-weight: 600 !important;
             margin-top: 2rem !important;
+            letter-spacing: 0.3px;
         }
         h3 {
             color: var(--text-color) !important;
             font-size: 1.6rem !important;
             margin-top: 1.5rem !important;
+            letter-spacing: 0.2px;
         }
         
-        /* Custom containers */
+        /* Text elements - Enhanced readability */
+        p, li, span {
+            color: var(--text-color);
+            font-size: 1.1rem !important;
+            line-height: 1.6 !important;
+            letter-spacing: 0.2px;
+        }
+
+        /* Custom containers - Improved contrast */
         .info-box {
             background-color: var(--card-bg);
             border-left: 5px solid var(--primary-color);
-            padding: 1.5rem;
+            padding: 1.8rem;
             margin: 1.5rem 0;
-            border-radius: 0.8rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
         
         .success-box {
-            background-color: rgba(67, 181, 129, 0.1);
+            background-color: rgba(105, 240, 174, 0.1);
             border-left: 5px solid var(--success-color);
-            padding: 1.5rem;
+            padding: 1.8rem;
             margin: 1.5rem 0;
-            border-radius: 0.8rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
         
         .warning-box {
-            background-color: rgba(250, 166, 26, 0.1);
+            background-color: rgba(255, 215, 64, 0.1);
             border-left: 5px solid var(--warning-color);
-            padding: 1.5rem;
+            padding: 1.8rem;
             margin: 1.5rem 0;
-            border-radius: 0.8rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Feature grid - Enhanced visibility */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            text-align: center;
         }
         
-        /* Buttons */
-        .stButton button {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            font-weight: 600;
-            padding: 0.8rem 2.5rem;
-            border-radius: 0.8rem;
-            border: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .stButton button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-        }
-        
-        /* File uploader */
-        .uploadedFile {
-            border: 2px dashed var(--primary-color);
-            border-radius: 0.8rem;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
+        .feature-item {
             background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 0.8rem;
+            border: 1px solid var(--border-color);
             transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        /* File uploader - Enhanced visibility */
+        .uploadedFile {
+            background-color: var(--card-bg);
+            border: 2px dashed var(--primary-color);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            transition: all 0.3s ease;
+            text-align: center;
         }
         
         .uploadedFile:hover {
             border-color: var(--accent-color);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Buttons - Improved visibility */
+        .stButton button {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white !important;
+            font-weight: 600;
+            padding: 1rem 2.5rem;
+            border-radius: 0.8rem;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            font-size: 1.1rem !important;
+            letter-spacing: 0.5px;
         }
         
-        /* Tables */
+        .stButton button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+        }
+
+        /* Input fields - Enhanced visibility */
+        .stTextInput input {
+            background-color: var(--card-bg) !important;
+            border: 2px solid var(--border-color) !important;
+            color: var(--text-color) !important;
+            border-radius: 0.8rem !important;
+            padding: 1rem 1.2rem !important;
+            font-size: 1.1rem !important;
+            transition: all 0.3s ease;
+        }
+        
+        .stTextInput input:focus {
+            border-color: var(--primary-color) !important;
+            box-shadow: 0 0 0 2px rgba(140, 158, 255, 0.2) !important;
+        }
+
+        /* Tables - Improved visibility */
         table {
             width: 100%;
             border-collapse: separate;
             border-spacing: 0;
             margin: 1.5rem 0;
             background-color: var(--card-bg);
-            border-radius: 0.8rem;
+            border-radius: 1rem;
             overflow: hidden;
         }
+        
         th {
             background-color: var(--secondary-color);
             color: var(--text-color);
-            padding: 1rem;
+            padding: 1.2rem;
             text-align: left;
-        }
-        td {
-            padding: 1rem;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-color);
-        }
-        tr:hover {
-            background-color: rgba(114, 137, 218, 0.1);
+            font-size: 1.1rem;
+            letter-spacing: 0.2px;
         }
         
-        /* Feedback sections */
+        td {
+            padding: 1.2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-color);
+            font-size: 1.1rem;
+        }
+        
+        tr:hover {
+            background-color: var(--hover-color);
+        }
+
+        /* Feedback section - Enhanced visibility */
         .feedback-section {
             background-color: var(--card-bg);
-            padding: 2rem;
-            border-radius: 0.8rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             margin: 2rem 0;
             border: 1px solid var(--border-color);
         }
-        
-        /* Input fields */
-        .stTextInput input {
-            background-color: var(--card-bg) !important;
-            border: 1px solid var(--border-color) !important;
-            color: var(--text-color) !important;
-            border-radius: 0.8rem !important;
-            padding: 0.8rem 1rem !important;
-        }
-        
-        .stTextInput input:focus {
-            border-color: var(--primary-color) !important;
-            box-shadow: 0 0 0 2px rgba(114, 137, 218, 0.2) !important;
-        }
-        
-        /* Spinner */
-        .stSpinner {
-            color: var(--primary-color) !important;
-        }
-        
-        /* Footer */
+
+        /* Footer - Enhanced visibility */
         .footer {
             margin-top: 4rem;
-            padding-top: 2rem;
+            padding: 2rem 0;
             border-top: 1px solid var(--border-color);
             text-align: center;
             color: var(--accent-color);
         }
         
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: var(--bg-color);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--secondary-color);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-color);
-        }
-        
-        /* Global text */
-        p, li, span {
+        .footer-text {
+            font-size: 1rem;
+            margin-bottom: 1rem;
             color: var(--text-color);
         }
-        
-        /* Links */
+
+        /* Links - Enhanced visibility */
         a {
             color: var(--primary-color);
             text-decoration: none;
@@ -214,6 +238,22 @@ def local_css():
         a:hover {
             color: var(--accent-color);
             text-decoration: underline;
+        }
+
+        /* Markdown text - Enhanced visibility */
+        .markdown-text-container {
+            color: var(--text-color) !important;
+            font-size: 1.1rem !important;
+            line-height: 1.6 !important;
+        }
+        
+        /* Code blocks */
+        code {
+            background-color: var(--hover-color);
+            color: var(--primary-color);
+            padding: 0.2em 0.4em;
+            border-radius: 0.3rem;
+            font-size: 0.9em;
         }
     </style>
     """, unsafe_allow_html=True)
@@ -242,154 +282,95 @@ def extract_text_from_pdf(uploaded_file):
 def get_resume_feedback(resume_text, job_field):
     """Get Feedback on resume"""
     prompt = f"""
-# 📄 Resume Review Prompt for {job_field} Position
+# 📄 Professional Resume Analysis for {job_field} Position
 
+You are a **senior hiring manager and industry expert** with extensive experience in {job_field}. Your task is to provide a comprehensive, actionable evaluation of the candidate's resume for a {job_field} position.
 
-You are a **senior hiring manager** with over 20 years of experience at top-tier global companies, specifically in {job_field}.  
-Your task is to critically evaluate the resume provided below as if you're deciding whether to shortlist this candidate for a competitive {job_field} role.
+## 🎯 Analysis Framework
 
-Your feedback should be **professional, practical, and tailored for a real-world job search in {job_field}**.  
-Focus on **clarity, structure, tone, formatting, keyword alignment**, and **overall impact**—with an eye on how well this resume would perform both with human recruiters and Applicant Tracking Systems (ATS).
+Evaluate the resume across these key dimensions:
+1. **ATS Optimization** - Compatibility with Applicant Tracking Systems
+2. **Content Quality** - Strength and impact of achievements
+3. **Industry Alignment** - Relevance to {job_field}
+4. **Visual Structure** - Layout and formatting effectiveness
 
----
+## 📊 Scoring Criteria
 
-⚠️ **Format Required**  
-Respond using the *exact* section titles, formatting, and Markdown structure as shown below.  
-**Do not skip or add sections. Do not reword headings.**
+Rate each aspect on a scale of 1-10:
+- 1-3: Needs significant improvement
+- 4-6: Meets basic requirements
+- 7-8: Strong performance
+- 9-10: Exceptional
 
-- **Current Effectiveness (1–10):** 6  
-- **Optimized Potential (1–10):** 8  
-- **Brief Summary of Strengths & Issues:** Strong technical base, but layout and phrasing limit clarity.  
-- **ATS Readiness (Yes/No):** No  
-- **Your Key Takeaway (1–2 sentences):** Needs reformatting and stronger action verbs to stand out in ATS and recruiter review.
+## 📝 Required Response Format
 
+### 1. Executive Summary
+- **Current Resume Score:** [1-10]
+- **Potential Score After Improvements:** [1-10]
+- **Key Strengths:** [3 bullet points]
+- **Critical Gaps:** [3 bullet points]
+- **ATS Readiness:** [Yes/No]
 
----
+### 2. 🚨 Priority Improvements
+List 3-5 critical issues that need immediate attention:
 
-## 🚨 Major Issues (Red Flags)
+| Issue | Current State | Recommended Improvement | Impact |
+|-------|--------------|------------------------|---------|
+| [Issue 1] | [Example] | [Better Version] | [Expected Outcome] |
 
-List critical issues that could hurt the resume's chances, along with suggestions for improvement.  
-Each issue should include an **example of the original content** and a **revised version**, specifically for {job_field} positions.
+### 3. 🎯 Industry-Specific Analysis for {job_field}
+- **Missing Keywords:** [List crucial industry terms]
+- **Technical Skills Gap:** [Identify missing skills]
+- **Experience Alignment:** [How well experience matches industry needs]
 
-| Issue                       | Original Example                                      | Improved Example                                      |
-|----------------------------|-------------------------------------------------------|--------------------------------------------------------|
-| Vague Bullet Point         | "Worked on team projects"                             | "Collaborated with 4-person team to develop a web app used by 200+ students" |
-| Weak Action Verb           | "Responsible for social media"                        | "Managed and grew Instagram following by 30% in 3 months" |
-| No Quantifiable Impact     | "Helped with data entry"                              | "Entered and verified 1,200+ records with 99.8% accuracy over 2 months" |
-| Irrelevant Information     | "High school science fair winner" (on college resume) | — *(Remove if not relevant to job or recent)*          |
-| Unclear Layout             | Mixed fonts, inconsistent spacing                     | Use a clean, consistent layout with clear section headers |
+### 4. 📈 Detailed Recommendations
 
-
----
-
-## ⚙️ ATS Compatibility Check for {job_field}
-
-- **Missing or Weak Keywords:**  
-- **Design/Layout Barriers:**  
-- **Estimated ATS Score (1–10):**
-
----
-
-## 🔧 Fix Recommendations
-
-Below are quick and deep fixes across three key areas of resume improvement: **Content**, **Design**, and **Strategy**.
-
-### 📌 Content
-
-**Quick Fix (≤1 hr):**  
-- Rewrite bullet points using strong action verbs (e.g., "Led", "Created", "Improved").
-- Avoid passive or vague phrases like "Worked on" or "Helped with."
+#### Content Enhancement
+- **Achievement Statements**
+  - Before: [Original bullet]
+  - After: [Improved version with metrics]
   
-**Use this format:**
+- **Skills Presentation**
+  - Before: [Current format]
+  - After: [Optimized format]
 
-❌ *[Original bullet from resume]*  
+#### Visual Optimization
+- **Layout:** [Specific formatting recommendations]
+- **Structure:** [Section organization advice]
+- **Formatting:** [Typography and spacing suggestions]
 
-✅ *[Improved version using action verb, clarity, and result]*
+### 5. 🔍 ATS Optimization Guide
+- **Format Issues:** [List any problematic elements]
+- **Keyword Density:** [Analysis of key terms]
+- **Parsing Challenges:** [Identify potential ATS issues]
 
-**Deep Fix (3–5 hrs):**  
-- Reframe each experience to show outcomes and impact. Use the **[Action] + [What you did] + [Result]** format.  
-- Add quantifiable metrics (e.g., "increased sales by 15%," "managed budget of $10K").  
-- Tailor descriptions to reflect competencies relevant to the target role or industry.
+### 6. 🎯 Industry Best Practices for {job_field}
+- **Must-Have Elements:** [Essential components]
+- **Emerging Trends:** [Current industry preferences]
+- **Red Flags:** [What to avoid]
 
----
+## 💡 Implementation Priority
+1. **Immediate Actions** (24 hours):
+   - [Action 1]
+   - [Action 2]
+2. **Short-term Improvements** (1 week):
+   - [Improvement 1]
+   - [Improvement 2]
+3. **Long-term Enhancements** (1 month):
+   - [Enhancement 1]
+   - [Enhancement 2]
 
-### 🎨 Design
-
-**Quick Fix (≤1 hr):**  
-- Use consistent fonts, spacing, and alignment.  
-- Make sure section headers are clear and bold, and that margins are not cramped.
-
-**Example (based on resume):**  
-
-❌ *Multiple font sizes used in 'Experience' section*
-
-✅ *Use one consistent font (e.g., Calibri 11pt) and align all bullets to left*
-
-**Deep Fix (3–5 hrs):**  
-- Apply a modern, ATS-friendly layout (e.g., left-aligned layout, no columns or graphics).  
-- Use section hierarchy (Summary → Skills → Experience → Education → Projects).  
-- Remove clutter like icons, photos, or complex visual elements that confuse ATS parsing.
-
----
-
-### 🎯 Strategy
-
-**Quick Fix (≤1 hr):**  
-- Add 4–6 keywords from a relevant job description (skills, tools, roles).
-- Rewrite your summary to clearly state your goal and top strengths.
-
-**Use this format:**
-
-❌ *[Original summary from resume]*  
-
-✅ *[Improved version with clearer career goals and targeted language]*
-
-**Deep Fix (3–5 hrs):**  
-- Research 2–3 target job listings and align resume language and structure to match.  
-- Prioritize the most relevant experiences—even if not in reverse chronological order.  
-- Refine the resume narrative to reflect your career goals and unique value proposition.
-
----
-
-## 🎯 Positioning Benchmark for {job_field}
-
-- **Target Level:** (e.g., Internship / Entry-Level / Mid-Level)
-- **Resume Tier:** Top 10% / Average / Needs Work
-- **One-Line Summary:** (e.g., "Strong foundation, needs polish for ATS and visual clarity.")
-
----
-
-## ✅ Key {job_field} Industry Tips
-
-- Keep it to one page unless you have over 5 years of experience.
-- Prioritize results and impact (quantify wherever possible).
-- Align language and structure with {job_field} job descriptions.
-- Avoid overly designed templates—ATS may not parse them well.
-- Proofread for grammar, consistency, and tone.
-- Include specific {job_field} technical skills and certifications.
-
----
-
-## ⚠️ Response Constraints (Strict)
-
-- **No AI disclaimers** (e.g., "As an AI...", "Good luck...").
-- **No filler or vague praise** (e.g., "Great job!", "Looks good.").
-- **Stay in character** as a senior hiring manager with 20+ years in {job_field}.
-- **Be direct, professional, and role-specific**.
-- **All feedback must be specific and actionable** (e.g., include revised bullet points, layout advice, keyword suggestions).
-- **Do not explain your process or how you generated the feedback**.
-- **Focus only on resume effectiveness, ATS performance, and alignment to {job_field} roles**.
-
-💡 *Final Reminder:*  
-Your output will be discarded if it includes:
-- AI disclaimers  
-- Fluff, encouragement, or "as an AI" language  
-- Skipped sections or altered headings
-
-Resume:
+Resume to analyze:
 \"\"\"
 {resume_text[:MAX_TEXT_LENGTH]}
 \"\"\"
+
+## ⚠️ Response Guidelines
+- Maintain professional tone
+- Provide specific, actionable feedback
+- Include measurable improvements
+- Focus on {job_field} industry standards
+- Use clear before/after examples
 """
     try:
         model = genai.GenerativeModel("gemini-2.0-flash")
