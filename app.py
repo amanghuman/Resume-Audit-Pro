@@ -16,19 +16,32 @@ COOLDOWN = 2
 def local_css():
     st.markdown("""
     <style>
-        /* Dark theme colors - Enhanced contrast */
+        /* Dark theme colors - New Color Scheme */
         :root {
-            --bg-color: #1A1B1E;
-            --text-color: #FFFFFF;
-            --primary-color: #8C9EFF;
-            --secondary-color: #536DFE;
-            --accent-color: #B2B9FF;
-            --success-color: #69F0AE;
-            --warning-color: #FFD740;
-            --error-color: #FF5252;
-            --card-bg: #2D2E32;
-            --border-color: #404246;
-            --hover-color: #3A3B3F;
+            /* Base Colors */
+            --bg-color: #1A1A1A;
+            --secondary-dark: #2D2D2D;
+            --text-color: #E0E0E0;
+            
+            /* Accent Colors */
+            --primary-color: #2D8CFF;
+            --primary-hover: #66B2FF;
+            --teal: #00C1A3;
+            --teal-hover: #00E6BF;
+            --gold: #FFD700;
+            --gold-hover: #FFE44D;
+            --error: #FF4D4D;
+            --error-hover: #FF6666;
+            
+            /* Utility Colors */
+            --gray: #6B6B6B;
+            --success: #4CAF50;
+            --warning: #FFA726;
+            
+            /* Additional UI Colors */
+            --card-bg: var(--secondary-dark);
+            --border-color: #404040;
+            --hover-color: #363636;
         }
 
         /* Main container */
@@ -38,30 +51,30 @@ def local_css():
             padding: 2rem;
         }
         
-        /* Headers - Improved visibility */
+        /* Headers */
         h1 {
-            color: var(--primary-color) !important;
+            color: var(--gold) !important;
             font-size: 3rem !important;
             font-weight: 700 !important;
             margin-bottom: 2rem !important;
-            text-shadow: 0 0 20px rgba(140, 158, 255, 0.3);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
             letter-spacing: 0.5px;
         }
         h2 {
-            color: var(--accent-color) !important;
+            color: var(--primary-color) !important;
             font-size: 2rem !important;
             font-weight: 600 !important;
             margin-top: 2rem !important;
             letter-spacing: 0.3px;
         }
         h3 {
-            color: var(--text-color) !important;
+            color: var(--teal) !important;
             font-size: 1.6rem !important;
             margin-top: 1.5rem !important;
             letter-spacing: 0.2px;
         }
         
-        /* Text elements - Enhanced readability */
+        /* Text elements */
         p, li, span {
             color: var(--text-color);
             font-size: 1.1rem !important;
@@ -69,9 +82,9 @@ def local_css():
             letter-spacing: 0.2px;
         }
 
-        /* Custom containers - Improved contrast */
+        /* Custom containers */
         .info-box {
-            background-color: var(--card-bg);
+            background-color: var(--secondary-dark);
             border-left: 5px solid var(--primary-color);
             padding: 1.8rem;
             margin: 1.5rem 0;
@@ -80,8 +93,8 @@ def local_css():
         }
         
         .success-box {
-            background-color: rgba(105, 240, 174, 0.1);
-            border-left: 5px solid var(--success-color);
+            background-color: rgba(76, 175, 80, 0.1);
+            border-left: 5px solid var(--success);
             padding: 1.8rem;
             margin: 1.5rem 0;
             border-radius: 1rem;
@@ -89,15 +102,15 @@ def local_css():
         }
         
         .warning-box {
-            background-color: rgba(255, 215, 64, 0.1);
-            border-left: 5px solid var(--warning-color);
+            background-color: rgba(255, 167, 38, 0.1);
+            border-left: 5px solid var(--warning);
             padding: 1.8rem;
             margin: 1.5rem 0;
             border-radius: 1rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
-        /* Feature grid - Enhanced visibility */
+        /* Feature grid */
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -107,7 +120,7 @@ def local_css():
         }
         
         .feature-item {
-            background-color: var(--card-bg);
+            background-color: var(--secondary-dark);
             padding: 1.5rem;
             border-radius: 0.8rem;
             border: 1px solid var(--border-color);
@@ -120,9 +133,9 @@ def local_css():
             border-color: var(--primary-color);
         }
 
-        /* File uploader - Enhanced visibility */
+        /* File uploader */
         .uploadedFile {
-            background-color: var(--card-bg);
+            background-color: var(--secondary-dark);
             border: 2px dashed var(--primary-color);
             border-radius: 1rem;
             padding: 2rem;
@@ -131,14 +144,22 @@ def local_css():
             text-align: center;
         }
         
-        .uploadedFile:hover {
-            border-color: var(--accent-color);
+        /* Style for the drag and drop text */
+        .css-1upf2ak {
+            background-color: var(--secondary-dark) !important;
+            color: var(--text-color) !important;
+            border: 2px dashed var(--primary-color) !important;
+        }
+        
+        /* Style for the browse files button */
+        .css-1upf2ak:hover {
+            border-color: var(--primary-hover) !important;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
-        /* Buttons - Improved visibility */
+        /* Buttons */
         .stButton button {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary-color), var(--teal)) !important;
             color: white !important;
             font-weight: 600;
             padding: 1rem 2.5rem;
@@ -153,12 +174,12 @@ def local_css():
         .stButton button:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            background: linear-gradient(135deg, var(--primary-hover), var(--teal-hover)) !important;
         }
 
-        /* Input fields - Enhanced visibility */
+        /* Input fields */
         .stTextInput input {
-            background-color: var(--card-bg) !important;
+            background-color: var(--secondary-dark) !important;
             border: 2px solid var(--border-color) !important;
             color: var(--text-color) !important;
             border-radius: 0.8rem !important;
@@ -169,22 +190,22 @@ def local_css():
         
         .stTextInput input:focus {
             border-color: var(--primary-color) !important;
-            box-shadow: 0 0 0 2px rgba(140, 158, 255, 0.2) !important;
+            box-shadow: 0 0 0 2px rgba(45, 140, 255, 0.2) !important;
         }
 
-        /* Tables - Improved visibility */
+        /* Tables */
         table {
             width: 100%;
             border-collapse: separate;
             border-spacing: 0;
             margin: 1.5rem 0;
-            background-color: var(--card-bg);
+            background-color: var(--secondary-dark);
             border-radius: 1rem;
             overflow: hidden;
         }
         
         th {
-            background-color: var(--secondary-color);
+            background-color: var(--teal);
             color: var(--text-color);
             padding: 1.2rem;
             text-align: left;
@@ -203,9 +224,9 @@ def local_css():
             background-color: var(--hover-color);
         }
 
-        /* Feedback section - Enhanced visibility */
+        /* Feedback section */
         .feedback-section {
-            background-color: var(--card-bg);
+            background-color: var(--secondary-dark);
             padding: 2.5rem;
             border-radius: 1rem;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -213,13 +234,13 @@ def local_css():
             border: 1px solid var(--border-color);
         }
 
-        /* Footer - Enhanced visibility */
+        /* Footer */
         .footer {
             margin-top: 4rem;
             padding: 2rem 0;
             border-top: 1px solid var(--border-color);
             text-align: center;
-            color: var(--accent-color);
+            color: var(--gray);
         }
         
         .footer-text {
@@ -228,7 +249,7 @@ def local_css():
             color: var(--text-color);
         }
 
-        /* Links - Enhanced visibility */
+        /* Links */
         a {
             color: var(--primary-color);
             text-decoration: none;
@@ -236,11 +257,11 @@ def local_css():
         }
         
         a:hover {
-            color: var(--accent-color);
+            color: var(--primary-hover);
             text-decoration: underline;
         }
 
-        /* Markdown text - Enhanced visibility */
+        /* Markdown text */
         .markdown-text-container {
             color: var(--text-color) !important;
             font-size: 1.1rem !important;
@@ -254,6 +275,50 @@ def local_css():
             padding: 0.2em 0.4em;
             border-radius: 0.3rem;
             font-size: 0.9em;
+        }
+
+        /* Error messages */
+        .stAlert {
+            background-color: var(--secondary-dark) !important;
+            color: var(--text-color) !important;
+            border-left-color: var(--error) !important;
+        }
+
+        /* Success messages */
+        .stSuccess {
+            background-color: var(--secondary-dark) !important;
+            color: var(--text-color) !important;
+            border-left-color: var(--success) !important;
+        }
+
+        /* Warning messages */
+        .stWarning {
+            background-color: var(--secondary-dark) !important;
+            color: var(--text-color) !important;
+            border-left-color: var(--warning) !important;
+        }
+
+        /* File uploader specific styles */
+        .stFileUploader {
+            background-color: var(--secondary-dark) !important;
+        }
+
+        .stFileUploader > div {
+            background-color: var(--secondary-dark) !important;
+            color: var(--text-color) !important;
+        }
+
+        .stFileUploader label {
+            color: var(--text-color) !important;
+        }
+
+        /* Streamlit default element overrides */
+        .stMarkdown {
+            color: var(--text-color) !important;
+        }
+
+        .element-container {
+            color: var(--text-color) !important;
         }
     </style>
     """, unsafe_allow_html=True)
