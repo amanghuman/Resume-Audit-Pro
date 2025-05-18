@@ -29,6 +29,10 @@ def local_css():
             letter-spacing: -0.5px;
         }
 
+        p {
+            color: #EEEEEE !important;
+        }
+
         h1 {
             font-size: 2.5rem !important;
             font-weight: 700 !important;
