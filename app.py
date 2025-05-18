@@ -16,32 +16,29 @@ COOLDOWN = 2
 def local_css():
     st.markdown("""
     <style>
-        /* Dark theme colors - New Color Scheme */
+        /* Dark theme colors - Minimalist Color Scheme */
         :root {
             /* Base Colors */
-            --bg-color: #1A1A1A;
-            --secondary-dark: #2D2D2D;
-            --text-color: #E0E0E0;
+            --bg-color: #222831;
+            --secondary-dark: #393E46;
+            --accent: #00ADB5;
+            --text-color: #EEEEEE;
             
-            /* Accent Colors */
-            --primary-color: #2D8CFF;
-            --primary-hover: #66B2FF;
-            --teal: #00C1A3;
-            --teal-hover: #00E6BF;
-            --gold: #FFD700;
-            --gold-hover: #FFE44D;
-            --error: #FF4D4D;
-            --error-hover: #FF6666;
+            /* Extended Palette */
+            --accent-light: #00FFF5;
+            --accent-dark: #008F96;
+            --secondary-light: #444B55;
+            --text-muted: #BBBBBB;
             
-            /* Utility Colors */
-            --gray: #6B6B6B;
-            --success: #4CAF50;
-            --warning: #FFA726;
+            /* Functional Colors */
+            --success: #2ECC71;
+            --warning: #F1C40F;
+            --error: #E74C3C;
             
-            /* Additional UI Colors */
+            /* UI Elements */
             --card-bg: var(--secondary-dark);
-            --border-color: #404040;
-            --hover-color: #363636;
+            --border-color: #4A4F57;
+            --hover-color: #2C3138;
         }
 
         /* Main container */
@@ -53,22 +50,22 @@ def local_css():
         
         /* Headers */
         h1 {
-            color: var(--gold) !important;
+            color: var(--accent) !important;
             font-size: 3rem !important;
             font-weight: 700 !important;
             margin-bottom: 2rem !important;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+            text-shadow: 0 0 20px rgba(0, 173, 181, 0.2);
             letter-spacing: 0.5px;
         }
         h2 {
-            color: var(--primary-color) !important;
+            color: var(--text-color) !important;
             font-size: 2rem !important;
             font-weight: 600 !important;
             margin-top: 2rem !important;
             letter-spacing: 0.3px;
         }
         h3 {
-            color: var(--teal) !important;
+            color: var(--accent) !important;
             font-size: 1.6rem !important;
             margin-top: 1.5rem !important;
             letter-spacing: 0.2px;
@@ -85,7 +82,7 @@ def local_css():
         /* Custom containers */
         .info-box {
             background-color: var(--secondary-dark);
-            border-left: 5px solid var(--primary-color);
+            border-left: 5px solid var(--accent);
             padding: 1.8rem;
             margin: 1.5rem 0;
             border-radius: 1rem;
@@ -93,7 +90,7 @@ def local_css():
         }
         
         .success-box {
-            background-color: rgba(76, 175, 80, 0.1);
+            background-color: rgba(46, 204, 113, 0.1);
             border-left: 5px solid var(--success);
             padding: 1.8rem;
             margin: 1.5rem 0;
@@ -102,7 +99,7 @@ def local_css():
         }
         
         .warning-box {
-            background-color: rgba(255, 167, 38, 0.1);
+            background-color: rgba(241, 196, 15, 0.1);
             border-left: 5px solid var(--warning);
             padding: 1.8rem;
             margin: 1.5rem 0;
@@ -130,13 +127,14 @@ def local_css():
         .feature-item:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-            border-color: var(--primary-color);
+            border-color: var(--accent);
+            background-color: var(--hover-color);
         }
 
         /* File uploader */
         .uploadedFile {
             background-color: var(--secondary-dark);
-            border: 2px dashed var(--primary-color);
+            border: 2px dashed var(--accent);
             border-radius: 1rem;
             padding: 2rem;
             margin: 1.5rem 0;
@@ -148,19 +146,19 @@ def local_css():
         .css-1upf2ak {
             background-color: var(--secondary-dark) !important;
             color: var(--text-color) !important;
-            border: 2px dashed var(--primary-color) !important;
+            border: 2px dashed var(--accent) !important;
         }
         
         /* Style for the browse files button */
         .css-1upf2ak:hover {
-            border-color: var(--primary-hover) !important;
+            border-color: var(--accent-light) !important;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         /* Buttons */
         .stButton button {
-            background: linear-gradient(135deg, var(--primary-color), var(--teal)) !important;
-            color: white !important;
+            background: var(--accent) !important;
+            color: var(--text-color) !important;
             font-weight: 600;
             padding: 1rem 2.5rem;
             border-radius: 0.8rem;
@@ -174,7 +172,7 @@ def local_css():
         .stButton button:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, var(--primary-hover), var(--teal-hover)) !important;
+            background: var(--accent-light) !important;
         }
 
         /* Input fields */
@@ -189,8 +187,8 @@ def local_css():
         }
         
         .stTextInput input:focus {
-            border-color: var(--primary-color) !important;
-            box-shadow: 0 0 0 2px rgba(45, 140, 255, 0.2) !important;
+            border-color: var(--accent) !important;
+            box-shadow: 0 0 0 2px rgba(0, 173, 181, 0.2) !important;
         }
 
         /* Tables */
@@ -205,7 +203,7 @@ def local_css():
         }
         
         th {
-            background-color: var(--teal);
+            background-color: var(--accent);
             color: var(--text-color);
             padding: 1.2rem;
             text-align: left;
@@ -240,7 +238,7 @@ def local_css():
             padding: 2rem 0;
             border-top: 1px solid var(--border-color);
             text-align: center;
-            color: var(--gray);
+            color: var(--text-muted);
         }
         
         .footer-text {
@@ -251,13 +249,13 @@ def local_css():
 
         /* Links */
         a {
-            color: var(--primary-color);
+            color: var(--accent);
             text-decoration: none;
             transition: all 0.3s ease;
         }
         
         a:hover {
-            color: var(--primary-hover);
+            color: var(--accent-light);
             text-decoration: underline;
         }
 
@@ -271,7 +269,7 @@ def local_css():
         /* Code blocks */
         code {
             background-color: var(--hover-color);
-            color: var(--primary-color);
+            color: var(--accent);
             padding: 0.2em 0.4em;
             border-radius: 0.3rem;
             font-size: 0.9em;
@@ -318,6 +316,36 @@ def local_css():
         }
 
         .element-container {
+            color: var(--text-color) !important;
+        }
+
+        /* Additional Streamlit component overrides */
+        .css-1d391kg {
+            background-color: var(--secondary-dark) !important;
+        }
+
+        .stSpinner > div {
+            border-color: var(--accent) !important;
+            border-right-color: transparent !important;
+        }
+
+        /* Progress bar */
+        .stProgress > div > div {
+            background-color: var(--accent) !important;
+        }
+
+        /* Radio buttons and checkboxes */
+        .stRadio > div {
+            color: var(--text-color) !important;
+        }
+
+        .stCheckbox > div {
+            color: var(--text-color) !important;
+        }
+
+        /* Selectbox */
+        .stSelectbox > div > div {
+            background-color: var(--secondary-dark) !important;
             color: var(--text-color) !important;
         }
     </style>
