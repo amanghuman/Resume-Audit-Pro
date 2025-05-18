@@ -16,337 +16,141 @@ COOLDOWN = 2
 def local_css():
     st.markdown("""
     <style>
-        /* Dark theme colors - Minimalist Color Scheme */
+        /* Base styles */
         :root {
-            /* Base Colors */
             --bg-color: #222831;
             --secondary-dark: #393E46;
             --accent: #00ADB5;
             --text-color: #EEEEEE;
-            
-            /* Extended Palette */
-            --accent-light: #00FFF5;
-            --accent-dark: #008F96;
-            --secondary-light: #444B55;
-            --text-muted: #BBBBBB;
-            
-            /* Functional Colors */
-            --success: #2ECC71;
-            --warning: #F1C40F;
-            --error: #E74C3C;
-            
-            /* UI Elements */
-            --card-bg: var(--secondary-dark);
             --border-color: #4A4F57;
             --hover-color: #2C3138;
         }
 
-        /* Main container */
+        /* Global styles */
         .main {
             background-color: var(--bg-color);
             color: var(--text-color);
-            padding: 2rem;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
         
-        /* Headers */
+        /* Typography */
         h1 {
-            color: var(--accent) !important;
-            font-size: 3rem !important;
-            font-weight: 700 !important;
-            margin-bottom: 2rem !important;
-            text-shadow: 0 0 20px rgba(0, 173, 181, 0.2);
-            letter-spacing: 0.5px;
+            color: var(--text-color) !important;
+            font-size: 1.8rem !important;
+            font-weight: 500 !important;
+            margin: 0 !important;
+            letter-spacing: -0.5px;
         }
+        
         h2 {
             color: var(--text-color) !important;
-            font-size: 2rem !important;
-            font-weight: 600 !important;
-            margin-top: 2rem !important;
-            letter-spacing: 0.3px;
-        }
-        h3 {
-            color: var(--accent) !important;
-            font-size: 1.6rem !important;
-            margin-top: 1.5rem !important;
-            letter-spacing: 0.2px;
+            font-size: 1.4rem !important;
+            font-weight: 500 !important;
+            margin: 0 !important;
+            letter-spacing: -0.3px;
         }
         
-        /* Text elements */
-        p, li, span {
+        p {
             color: var(--text-color);
-            font-size: 1.1rem !important;
-            line-height: 1.6 !important;
-            letter-spacing: 0.2px;
+            font-size: 1rem !important;
+            line-height: 1.5 !important;
+            margin: 0.5rem 0 !important;
         }
 
-        /* Custom containers */
+        /* Containers */
         .info-box {
             background-color: var(--secondary-dark);
-            border-left: 5px solid var(--accent);
-            padding: 1.8rem;
+            padding: 1.5rem;
+            border-radius: 4px;
             margin: 1.5rem 0;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
         
-        .success-box {
-            background-color: rgba(46, 204, 113, 0.1);
-            border-left: 5px solid var(--success);
-            padding: 1.8rem;
-            margin: 1.5rem 0;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-        
-        .warning-box {
-            background-color: rgba(241, 196, 15, 0.1);
-            border-left: 5px solid var(--warning);
-            padding: 1.8rem;
-            margin: 1.5rem 0;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Feature grid */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-            text-align: center;
-        }
-        
-        .feature-item {
+        .feedback-section {
             background-color: var(--secondary-dark);
             padding: 1.5rem;
-            border-radius: 0.8rem;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-        
-        .feature-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-            border-color: var(--accent);
-            background-color: var(--hover-color);
+            border-radius: 4px;
+            margin: 1rem 0;
         }
 
         /* File uploader */
-        .uploadedFile {
-            background-color: var(--secondary-dark);
-            border: 2px dashed var(--accent);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin: 1.5rem 0;
-            transition: all 0.3s ease;
-            text-align: center;
+        .stFileUploader {
+            background-color: var(--secondary-dark) !important;
         }
         
-        /* Style for the drag and drop text */
         .css-1upf2ak {
             background-color: var(--secondary-dark) !important;
             color: var(--text-color) !important;
-            border: 2px dashed var(--accent) !important;
-        }
-        
-        /* Style for the browse files button */
-        .css-1upf2ak:hover {
-            border-color: var(--accent-light) !important;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color) !important;
+            border-radius: 4px !important;
+            padding: 1.5rem !important;
         }
 
         /* Buttons */
         .stButton button {
-            background: var(--accent) !important;
+            background-color: var(--accent) !important;
             color: var(--text-color) !important;
-            font-weight: 600;
-            padding: 1rem 2.5rem;
-            border-radius: 0.8rem;
-            border: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            font-size: 1.1rem !important;
-            letter-spacing: 0.5px;
+            font-weight: 500 !important;
+            padding: 0.75rem 1.5rem !important;
+            border-radius: 4px !important;
+            border: none !important;
+            transition: opacity 0.2s ease !important;
+            font-size: 1rem !important;
+            width: 100% !important;
         }
         
         .stButton button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-            background: var(--accent-light) !important;
+            opacity: 0.9 !important;
+            transform: none !important;
         }
 
         /* Input fields */
         .stTextInput input {
             background-color: var(--secondary-dark) !important;
-            border: 2px solid var(--border-color) !important;
+            border: 1px solid var(--border-color) !important;
             color: var(--text-color) !important;
-            border-radius: 0.8rem !important;
-            padding: 1rem 1.2rem !important;
-            font-size: 1.1rem !important;
-            transition: all 0.3s ease;
+            border-radius: 4px !important;
+            padding: 0.75rem 1rem !important;
+            font-size: 1rem !important;
+            transition: border-color 0.2s ease !important;
         }
         
         .stTextInput input:focus {
             border-color: var(--accent) !important;
-            box-shadow: 0 0 0 2px rgba(0, 173, 181, 0.2) !important;
+            box-shadow: none !important;
         }
 
-        /* Tables */
-        table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            margin: 1.5rem 0;
+        /* Messages */
+        .success-box, .warning-box {
             background-color: var(--secondary-dark);
-            border-radius: 1rem;
-            overflow: hidden;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            font-size: 0.9rem;
         }
         
-        th {
-            background-color: var(--accent);
-            color: var(--text-color);
-            padding: 1.2rem;
-            text-align: left;
-            font-size: 1.1rem;
-            letter-spacing: 0.2px;
+        .success-box {
+            border-left: 2px solid var(--accent);
         }
         
-        td {
-            padding: 1.2rem;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-color);
-            font-size: 1.1rem;
-        }
-        
-        tr:hover {
-            background-color: var(--hover-color);
-        }
-
-        /* Feedback section */
-        .feedback-section {
-            background-color: var(--secondary-dark);
-            padding: 2.5rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            margin: 2rem 0;
-            border: 1px solid var(--border-color);
+        .warning-box {
+            border-left: 2px solid #FFA726;
         }
 
         /* Footer */
         .footer {
-            margin-top: 4rem;
-            padding: 2rem 0;
+            margin-top: 3rem;
+            padding: 1rem 0;
             border-top: 1px solid var(--border-color);
             text-align: center;
-            color: var(--text-muted);
-        }
-        
-        .footer-text {
-            font-size: 1rem;
-            margin-bottom: 1rem;
+            font-size: 0.9rem;
             color: var(--text-color);
+            opacity: 0.7;
         }
 
-        /* Links */
-        a {
-            color: var(--accent);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        a:hover {
-            color: var(--accent-light);
-            text-decoration: underline;
-        }
-
-        /* Markdown text */
-        .markdown-text-container {
-            color: var(--text-color) !important;
-            font-size: 1.1rem !important;
-            line-height: 1.6 !important;
-        }
-        
-        /* Code blocks */
-        code {
-            background-color: var(--hover-color);
-            color: var(--accent);
-            padding: 0.2em 0.4em;
-            border-radius: 0.3rem;
-            font-size: 0.9em;
-        }
-
-        /* Error messages */
-        .stAlert {
-            background-color: var(--secondary-dark) !important;
-            color: var(--text-color) !important;
-            border-left-color: var(--error) !important;
-        }
-
-        /* Success messages */
-        .stSuccess {
-            background-color: var(--secondary-dark) !important;
-            color: var(--text-color) !important;
-            border-left-color: var(--success) !important;
-        }
-
-        /* Warning messages */
-        .stWarning {
-            background-color: var(--secondary-dark) !important;
-            color: var(--text-color) !important;
-            border-left-color: var(--warning) !important;
-        }
-
-        /* File uploader specific styles */
-        .stFileUploader {
-            background-color: var(--secondary-dark) !important;
-        }
-
-        .stFileUploader > div {
-            background-color: var(--secondary-dark) !important;
-            color: var(--text-color) !important;
-        }
-
-        .stFileUploader label {
-            color: var(--text-color) !important;
-        }
-
-        /* Streamlit default element overrides */
-        .stMarkdown {
-            color: var(--text-color) !important;
-        }
-
-        .element-container {
-            color: var(--text-color) !important;
-        }
-
-        /* Additional Streamlit component overrides */
-        .css-1d391kg {
-            background-color: var(--secondary-dark) !important;
-        }
-
+        /* Spinner */
         .stSpinner > div {
             border-color: var(--accent) !important;
             border-right-color: transparent !important;
-        }
-
-        /* Progress bar */
-        .stProgress > div > div {
-            background-color: var(--accent) !important;
-        }
-
-        /* Radio buttons and checkboxes */
-        .stRadio > div {
-            color: var(--text-color) !important;
-        }
-
-        .stCheckbox > div {
-            color: var(--text-color) !important;
-        }
-
-        /* Selectbox */
-        .stSelectbox > div > div {
-            background-color: var(--secondary-dark) !important;
-            color: var(--text-color) !important;
         }
     </style>
     """, unsafe_allow_html=True)
@@ -476,7 +280,7 @@ Resume to analyze:
 def main():
     st.set_page_config(
         page_title="Resume Audit Pro",
-        page_icon="📄",
+        page_icon=None,
         layout="wide",
         initial_sidebar_state="collapsed",
         menu_items={
@@ -489,33 +293,16 @@ def main():
     # Apply custom CSS
     local_css()
     
-    # Set dark theme
-    st.markdown("""
-        <script>
-            var observer = new MutationObserver(function(mutations) {
-                document.body.style.backgroundColor = '#1E1E1E';
-            });
-            observer.observe(document.body, { attributes: true });
-        </script>
-    """, unsafe_allow_html=True)
-    
     # Initialize session state
     init_session_state()
     
-    # Header section with modern layout
+    # Header section with minimalist layout
     st.markdown("""
-        <div style='text-align: center; padding: 2rem 0;'>
-            <h1>📄 Resume Audit Pro</h1>
-            <div class='info-box' style='max-width: 800px; margin: 2rem auto;'>
-                <h3 style='margin-top: 0;'>Professional Resume Analysis</h3>
-                <p>Get expert feedback on your resume with our AI-powered analysis tool. 
-                We evaluate your resume for:</p>
-                <div style='display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;'>
-                    <div>✨ ATS Compatibility</div>
-                    <div>📊 Content Strength</div>
-                    <div>🎯 Industry Alignment</div>
-                </div>
-            </div>
+        <div style='padding: 1rem 0; border-bottom: 1px solid var(--border-color);'>
+            <h1 style='margin: 0; font-size: 2rem !important;'>Resume Audit Pro</h1>
+        </div>
+        <div class='info-box' style='max-width: 800px; margin: 2rem auto;'>
+            <p style='margin: 0;'>Professional resume analysis powered by AI. We evaluate your resume for ATS compatibility, content strength, and industry alignment.</p>
         </div>
     """, unsafe_allow_html=True)
     
@@ -526,8 +313,8 @@ def main():
         # Step 1: File Upload
         st.markdown("""
             <div class='feedback-section'>
-                <h2 style='margin-top: 0;'>📤 Upload Your Resume</h2>
-                <p>Upload your resume in PDF format for a comprehensive analysis.</p>
+                <h2 style='margin-top: 0;'>Upload Your Resume</h2>
+                <p>Upload your resume in PDF format for analysis.</p>
             </div>
         """, unsafe_allow_html=True)
         
@@ -546,22 +333,22 @@ def main():
                 if not resume_text:
                     st.markdown("""
                         <div class='warning-box'>
-                            ❌ Could not extract text from PDF. Please ensure your PDF contains selectable text.
+                            Could not extract text from PDF. Please ensure your PDF contains selectable text.
                         </div>
                     """, unsafe_allow_html=True)
                     st.stop()
                 st.session_state.resume_text = resume_text
                 st.markdown("""
                     <div class='success-box'>
-                        ✅ Resume uploaded successfully!
+                        Resume uploaded successfully
                     </div>
                 """, unsafe_allow_html=True)
             
             # Step 2: Job Field Input
             st.markdown("""
                 <div class='feedback-section'>
-                    <h2 style='margin-top: 0;'>🎯 Specify Target Role</h2>
-                    <p>Enter the job title or field you're targeting to receive tailored feedback.</p>
+                    <h2 style='margin-top: 0;'>Target Role</h2>
+                    <p>Enter the job title or field you're targeting.</p>
                 </div>
             """, unsafe_allow_html=True)
             
@@ -574,22 +361,22 @@ def main():
             # Step 3: Audit Button
             st.markdown("""
                 <div class='feedback-section'>
-                    <h2 style='margin-top: 0;'>🔍 Run Analysis</h2>
-                    <p>Click the button below to get detailed feedback on your resume.</p>
+                    <h2 style='margin-top: 0;'>Analyze Resume</h2>
+                    <p>Get detailed feedback on your resume.</p>
                 </div>
             """, unsafe_allow_html=True)
 
             if 'analyze_clicked' not in st.session_state:
                 st.session_state.analyze_clicked = False
             
-            if st.button("Analyze Resume", use_container_width=True, key="analyze_button"):
+            if st.button("Analyze", use_container_width=True, key="analyze_button"):
                 st.session_state.analyze_clicked = True
             
             if st.session_state.analyze_clicked:
                 if not job_field:
                     st.markdown("""
                         <div class='warning-box'>
-                            ❌ Please enter the job field you're applying for.
+                            Please enter the job field you're applying for.
                         </div>
                     """, unsafe_allow_html=True)
                     st.session_state.analyze_clicked = False
@@ -598,18 +385,18 @@ def main():
                 if time() - st.session_state.last_time < COOLDOWN:
                     st.markdown("""
                         <div class='warning-box'>
-                            ⏳ Please wait a moment before running another analysis.
+                            Please wait a moment before running another analysis.
                         </div>
                     """, unsafe_allow_html=True)
                     st.session_state.analyze_clicked = False
                     st.stop()
                 
-                with st.spinner("🧠 Analyzing your resume..."):
+                with st.spinner("Analyzing your resume..."):
                     feedback = get_resume_feedback(st.session_state.resume_text, job_field)
                     if not feedback:
                         st.markdown("""
                             <div class='warning-box'>
-                                🤖 Analysis failed. Please try again.
+                                Analysis failed. Please try again.
                             </div>
                         """, unsafe_allow_html=True)
                         st.session_state.analyze_clicked = False
@@ -620,7 +407,7 @@ def main():
                     
                     st.markdown("""
                         <div class='success-box'>
-                            ✅ Analysis complete! See detailed feedback below.
+                            Analysis complete
                         </div>
                     """, unsafe_allow_html=True)
                     st.session_state.analyze_clicked = False
@@ -629,7 +416,7 @@ def main():
     if st.session_state.feedback:
         st.markdown("""
             <div class='feedback-section' style='margin-top: 3rem;'>
-                <h2 style='margin-top: 0; text-align: center;'>📝 Resume Evaluation Results</h2>
+                <h2 style='margin-top: 0; text-align: center;'>Resume Evaluation</h2>
                 <div style='margin-top: 2rem;'>
         """, unsafe_allow_html=True)
         
@@ -638,14 +425,11 @@ def main():
         
         st.markdown("</div></div>", unsafe_allow_html=True)
     
-    # Modern footer with social links
+    # Minimal footer
     st.markdown("""
         <div class='footer'>
-            <div style='margin-bottom: 1rem;'>
-                📝 Created by Aman Ghuman
-            </div>
             <div style='font-size: 0.9rem;'>
-                Resume Audit Pro - Your AI-powered resume analysis tool
+                Resume Audit Pro
             </div>
         </div>
     """, unsafe_allow_html=True)
