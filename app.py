@@ -465,10 +465,10 @@ def main():
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown(\"\"\"<div class='progress-bar'><b>ATS Compatibility:</b> 80%</div>\"\"\", unsafe_allow_html=True)
+    st.markdown("""<div class='progress-bar'><b>ATS Compatibility:</b> 80%</div>""", unsafe_allow_html=True)
     st.progress(0.8)
 
-    st.markdown(\"\"\"
+    st.markdown("""
     <div class='testimonials'>
       <div class='testimonial-card'>"Landed 3x more interviews!"<br><span style='font-size:0.9em;opacity:0.7;'>— Priya S.</span></div>
       <div class='testimonial-card'>"The feedback was actionable and clear."<br><span style='font-size:0.9em;opacity:0.7;'>— Alex T.</span></div>
@@ -477,7 +477,7 @@ def main():
       <img src='https://upload.wikimedia.org/wikipedia/commons/4/44/Google-flutter-logo.svg' class='partner-logo'>
       <img src='https://upload.wikimedia.org/wikipedia/commons/2/2f/Logo_TV_2015.png' class='partner-logo'>
     </div>
-    \"\"\", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
     st.video('https://www.youtube.com/embed/your-tutorial-id')
 
