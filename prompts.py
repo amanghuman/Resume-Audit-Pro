@@ -1,3 +1,4 @@
+# app/prompts.py
 def get_resume_feedback_prompt(resume_text, job_field):
     return f"""
 # 📄 Professional Resume Analysis for {job_field} Position
