@@ -16,6 +16,8 @@ COOLDOWN = 2
 def local_css():
     st.markdown("""
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap');
+
         /* Base styles */
         :root {
             --bg-color: #222831;
@@ -24,27 +26,35 @@ def local_css():
             --text-color: #EEEEEE;
             --border-color: #4A4F57;
             --hover-color: #2C3138;
+            --gradient-start: #00ADB5;
+            --gradient-end: #006D73;
         }
 
         /* Global styles */
         .main {
             background-color: var(--bg-color);
             color: var(--text-color);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         
         /* Typography */
         h1 {
+            font-family: 'Space Grotesk', sans-serif;
             color: var(--text-color) !important;
-            font-size: 1.8rem !important;
-            font-weight: 500 !important;
+            font-size: 2.2rem !important;
+            font-weight: 600 !important;
             margin: 0 !important;
             letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         h2 {
+            font-family: 'Space Grotesk', sans-serif;
             color: var(--text-color) !important;
-            font-size: 1.4rem !important;
+            font-size: 1.5rem !important;
             font-weight: 500 !important;
             margin: 0 !important;
             letter-spacing: -0.3px;
@@ -53,23 +63,31 @@ def local_css():
         p {
             color: var(--text-color);
             font-size: 1rem !important;
-            line-height: 1.5 !important;
-            margin: 0.5rem 0 !important;
+            line-height: 1.6 !important;
+            margin: 0.75rem 0 !important;
+            opacity: 0.9;
         }
 
         /* Containers */
         .info-box {
             background-color: var(--secondary-dark);
             padding: 1.5rem;
-            border-radius: 4px;
+            border-radius: 8px;
             margin: 1.5rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .feedback-section {
             background-color: var(--secondary-dark);
-            padding: 1.5rem;
-            border-radius: 4px;
+            padding: 1.8rem;
+            border-radius: 8px;
             margin: 1rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .feedback-section:hover {
+            transform: translateY(-2px);
         }
 
         /* File uploader */
@@ -80,77 +98,134 @@ def local_css():
         .css-1upf2ak {
             background-color: var(--secondary-dark) !important;
             color: var(--text-color) !important;
-            border: 1px solid var(--border-color) !important;
-            border-radius: 4px !important;
-            padding: 1.5rem !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border-radius: 8px !important;
+            padding: 1.8rem !important;
+            transition: border-color 0.2s ease !important;
+        }
+
+        .css-1upf2ak:hover {
+            border-color: var(--accent) !important;
         }
 
         /* Buttons */
         .stButton button {
-            background-color: var(--accent) !important;
+            font-family: 'Space Grotesk', sans-serif !important;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)) !important;
             color: var(--text-color) !important;
             font-weight: 500 !important;
-            padding: 0.75rem 1.5rem !important;
-            border-radius: 4px !important;
+            padding: 0.9rem 2rem !important;
+            border-radius: 8px !important;
             border: none !important;
-            transition: opacity 0.2s ease !important;
-            font-size: 1rem !important;
+            transition: all 0.2s ease !important;
+            font-size: 1.1rem !important;
             width: 100% !important;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .stButton button:hover {
             opacity: 0.9 !important;
-            transform: none !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 4px 12px rgba(0, 173, 181, 0.2) !important;
         }
 
         /* Input fields */
         .stTextInput input {
+            font-family: 'Poppins', sans-serif !important;
             background-color: var(--secondary-dark) !important;
-            border: 1px solid var(--border-color) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
             color: var(--text-color) !important;
-            border-radius: 4px !important;
-            padding: 0.75rem 1rem !important;
+            border-radius: 8px !important;
+            padding: 0.9rem 1.2rem !important;
             font-size: 1rem !important;
-            transition: border-color 0.2s ease !important;
+            transition: all 0.2s ease !important;
         }
         
         .stTextInput input:focus {
             border-color: var(--accent) !important;
-            box-shadow: none !important;
+            box-shadow: 0 0 0 2px rgba(0, 173, 181, 0.1) !important;
+            transform: translateY(-1px);
         }
 
         /* Messages */
         .success-box, .warning-box {
             background-color: var(--secondary-dark);
-            padding: 1rem;
-            border-radius: 4px;
+            padding: 1.2rem;
+            border-radius: 8px;
             margin: 1rem 0;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .success-box {
-            border-left: 2px solid var(--accent);
+            border-left: 3px solid var(--accent);
         }
         
         .warning-box {
-            border-left: 2px solid #FFA726;
+            border-left: 3px solid #FFA726;
         }
 
         /* Footer */
         .footer {
-            margin-top: 3rem;
-            padding: 1rem 0;
+            margin-top: 4rem;
+            padding: 2rem 0;
             border-top: 1px solid var(--border-color);
-            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-description {
             font-size: 0.9rem;
             color: var(--text-color);
             opacity: 0.7;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        .footer-brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text-color);
+            opacity: 0.9;
+            font-weight: 500;
         }
 
         /* Spinner */
         .stSpinner > div {
             border-color: var(--accent) !important;
             border-right-color: transparent !important;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary-dark);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+
+        /* Placeholder text */
+        ::placeholder {
+            color: rgba(238, 238, 238, 0.5) !important;
         }
     </style>
     """, unsafe_allow_html=True)
@@ -298,11 +373,8 @@ def main():
     
     # Header section with minimalist layout
     st.markdown("""
-        <div style='padding: 1rem 0; border-bottom: 1px solid var(--border-color);'>
-            <h1 style='margin: 0; font-size: 2rem !important;'>Resume Audit Pro</h1>
-        </div>
-        <div class='info-box' style='max-width: 800px; margin: 2rem auto;'>
-            <p style='margin: 0;'>Professional resume analysis powered by AI. We evaluate your resume for ATS compatibility, content strength, and industry alignment.</p>
+        <div style='padding: 2rem 0; margin-bottom: 2rem; border-bottom: 1px solid var(--border-color);'>
+            <h1>Resume Audit Pro</h1>
         </div>
     """, unsafe_allow_html=True)
     
@@ -313,7 +385,7 @@ def main():
         # Step 1: File Upload
         st.markdown("""
             <div class='feedback-section'>
-                <h2 style='margin-top: 0;'>Upload Your Resume</h2>
+                <h2>Upload Your Resume</h2>
                 <p>Upload your resume in PDF format for analysis.</p>
             </div>
         """, unsafe_allow_html=True)
@@ -347,7 +419,7 @@ def main():
             # Step 2: Job Field Input
             st.markdown("""
                 <div class='feedback-section'>
-                    <h2 style='margin-top: 0;'>Target Role</h2>
+                    <h2>Target Role</h2>
                     <p>Enter the job title or field you're targeting.</p>
                 </div>
             """, unsafe_allow_html=True)
@@ -361,7 +433,7 @@ def main():
             # Step 3: Audit Button
             st.markdown("""
                 <div class='feedback-section'>
-                    <h2 style='margin-top: 0;'>Analyze Resume</h2>
+                    <h2>Analyze Resume</h2>
                     <p>Get detailed feedback on your resume.</p>
                 </div>
             """, unsafe_allow_html=True)
@@ -425,11 +497,16 @@ def main():
         
         st.markdown("</div></div>", unsafe_allow_html=True)
     
-    # Minimal footer
+    # Footer with description on the left
     st.markdown("""
         <div class='footer'>
-            <div style='font-size: 0.9rem;'>
-                Resume Audit Pro
+            <div class='footer-content'>
+                <div class='footer-description'>
+                    Professional resume analysis powered by AI. We evaluate your resume for ATS compatibility, content strength, and industry alignment.
+                </div>
+                <div class='footer-brand'>
+                    Resume Audit Pro
+                </div>
             </div>
         </div>
     """, unsafe_allow_html=True)
