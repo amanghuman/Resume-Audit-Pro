@@ -129,6 +129,23 @@ def local_css():
             0% { opacity: 0; transform: translateY(30px);}
             100% { opacity: 1; transform: translateY(0);}
         }
+        .hero { padding: 3rem 0 2rem 0; text-align: center; }
+        .hero-content { max-width: 600px; margin: 0 auto; }
+        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2.8rem; font-weight: 700; color: #fff; }
+        .tagline { font-size: 1.3rem; color: #00ADB5; margin-bottom: 1.5rem; }
+        .hero-img { width: 220px; margin: 1.5rem 0; }
+        .trust-box { background: #393E46; color: #EEEEEE; border-radius: 16px; padding: 1rem 1.5rem; margin: 1.5rem 0; font-size: 1rem; }
+        .progress-bar { margin: 1.5rem 0; }
+        .footer { background: none; border-top: 1px solid #393E46; color: #EEEEEE; font-size: 1rem; opacity: 0.8; padding: 2rem 0 0 0; }
+        .footer-links a { color: #00ADB5; margin-right: 1.5rem; text-decoration: none; }
+        .testimonials, .partners { display: flex; gap: 2rem; justify-content: center; margin: 2rem 0; }
+        .testimonial-card { background: #393E46; border-radius: 16px; padding: 1.2rem 1.5rem; color: #EEEEEE; font-size: 1rem; box-shadow: 0 2px 8px 0 rgba(0,173,181,0.10);}
+        .partner-logo { height: 32px; opacity: 0.7; }
+        @media (max-width: 700px) {
+            .hero h1 { font-size: 2rem; }
+            .hero-img { width: 120px; }
+            .footer-content { flex-direction: column; align-items: flex-start; }
+        }
     </style>
     """, unsafe_allow_html=True)
 
@@ -366,6 +383,12 @@ def main():
                     st.stop()
                 
                 with st.spinner("Analyzing your resume..."):
+                    progress = st.progress(0, text='Analyzing your resume...')
+                    for percent in range(1, 101):
+                        time.sleep(0.01)
+                        progress.progress(percent, text=f'Analyzing your resume... {percent}%')
+                    progress.empty()
+                    
                     feedback = get_resume_feedback(st.session_state.resume_text, job_field)
                     if not feedback:
                         st.markdown("""
@@ -412,6 +435,51 @@ def main():
             </div>
         </div>
     """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class='hero'>
+      <div class='hero-content'>
+        <h1>Resume Audit Pro</h1>
+        <p class='tagline'>AI-Powered Resume Feedback in 60 Seconds</p>
+        <img src='https://cdn.jsdelivr.net/gh/yourrepo/hero-illustration.svg' class='hero-img' alt='AI Resume Illustration'>
+      </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class='trust-box'>
+      <b>🔒 Your privacy matters:</b> We never store your resume. All uploads are encrypted and deleted after analysis.
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class='footer'>
+      <div class='footer-links'>
+        <a href='/privacy' target='_blank'>Privacy Policy</a>
+        <a href='/terms' target='_blank'>Terms of Service</a>
+        <a href='/delete' target='_blank'>Delete My Data</a>
+      </div>
+      <div style='margin-top: 0.5rem; font-size: 0.95rem; opacity: 0.7;'>
+        &copy; 2024 Resume Audit Pro. All rights reserved.
+      </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown(\"\"\"<div class='progress-bar'><b>ATS Compatibility:</b> 80%</div>\"\"\", unsafe_allow_html=True)
+    st.progress(0.8)
+
+    st.markdown(\"\"\"
+    <div class='testimonials'>
+      <div class='testimonial-card'>"Landed 3x more interviews!"<br><span style='font-size:0.9em;opacity:0.7;'>— Priya S.</span></div>
+      <div class='testimonial-card'>"The feedback was actionable and clear."<br><span style='font-size:0.9em;opacity:0.7;'>— Alex T.</span></div>
+    </div>
+    <div class='partners'>
+      <img src='https://upload.wikimedia.org/wikipedia/commons/4/44/Google-flutter-logo.svg' class='partner-logo'>
+      <img src='https://upload.wikimedia.org/wikipedia/commons/2/2f/Logo_TV_2015.png' class='partner-logo'>
+    </div>
+    \"\"\", unsafe_allow_html=True)
+
+    st.video('https://www.youtube.com/embed/your-tutorial-id')
 
 if __name__ == "__main__":
     main()
