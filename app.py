@@ -30,6 +30,7 @@ def local_css():
         }
 
         p {
+            font-family: 'Space Grotesk', sans-serif !important;
             color: #EEEEEE !important;
         }
 
