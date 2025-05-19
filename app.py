@@ -77,7 +77,7 @@ if st.button("Run Resume Audit"):
 
             # Resume Review Prompt for {job_field} Position
             prompt = f"""
-Resume Review Prompt for {job_field} Position against {job_description}
+# Resume Review Prompt for {job_field} Position against {job_description}
 You are a **senior hiring manager** with over 20 years of experience at top-tier global companies, specifically in {job_field}.  
 Your task is to critically evaluate the resume provided below as if you're deciding whether to shortlist this candidate for a competitive {job_field} role.
 
