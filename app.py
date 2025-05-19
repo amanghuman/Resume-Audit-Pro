@@ -10,10 +10,6 @@ import requests
 load_dotenv()
 genai.configure(api_key=st.secrets.gemini.api_key)
 
-# Initialize session state
-if "auditing" not in st.session_state:
-    st.session_state.auditing = False
-
 st.set_page_config(
     page_title="Resume Audit Pro",
     page_icon="",
@@ -52,19 +48,20 @@ job_field = st.text_input("Enter the job field (e.g., Data Science, Marketing, S
 st.markdown("## Job Description")
 job_description = st.text_area("Paste the job description", height=220)
 
-def run_audit():
-    st.session_state.auditing = True
+# Run audit
+if st.button("Run Resume Audit"):
+    if not pdf_file or not job_description or not job_field:
+        st.error("Please upload a resume, paste a job description, and specify the job field.")
+    else:
+        pdf_file.seek(0)  # ✅ FIX 1: Reset file pointer
+        with pdfplumber.open(pdf_file) as pdf:
+            resume_text = "".join([page.extract_text() or "" for page in pdf.pages])
 
-    pdf_file.seek(0)
-    with pdfplumber.open(pdf_file) as pdf:
-        resume_text = "".join([page.extract_text() or "" for page in pdf.pages])
+        if not resume_text.strip():  # ✅ FIX 2: Handle image-based or empty PDFs
+            st.error("No extractable text found in the PDF. Please upload a text-based resume.")
+            st.stop()
 
-    if not resume_text.strip():
-        st.error("No extractable text found in the PDF. Please upload a text-based resume.")
-        st.session_state.auditing = False
-        return
-
-    prompt = f"""
+        prompt = f"""
         # 📄 Resume Review Prompt for {job_field} Position against the job description.
 
 
@@ -214,42 +211,8 @@ Your output will be discarded if it includes:
         {job_description}
         """
 
-    model = genai.GenerativeModel("gemini-2.0-flash")
-    response = model.generate_content(prompt)
+        model = genai.GenerativeModel("gemini-2.0-flash")
+        response = model.generate_content(prompt)
 
-    st.session_state.response_text = response.text
-    st.session_state.auditing = False
-    
-# Button click callback to start audit
-def start_audit():
-    if not pdf_file or not job_description or not job_field:
-        st.session_state.audit_error = "Please upload a resume, paste a job description, and specify the job field."
-        return
-    st.session_state.audit_error = None
-    st.session_state.auditing = True
-    st.session_state.run_audit_now = True
-
-# Trigger button or spinner
-if not st.session_state.auditing:
-    st.button("Run Resume Audit", on_click=start_audit)
-else:
-    st_lottie(
-        load_lottie_url("https://lottie.host/d139f326-5bbf-45ed-a57a-62934d3be4fb/8qPUEVboB4.json"),
-        height=180,
-        key="loading-animation"
-    )
-
-# Show error if input missing
-if st.session_state.get("audit_error"):
-    st.error(st.session_state.audit_error)
-
-# Run audit exactly once when triggered
-if st.session_state.get("run_audit_now"):
-    st.session_state.run_audit_now = False  # prevent repeat runs
-    run_audit()
-
-# Show result if available
-if "response_text" in st.session_state and st.session_state.response_text:
-    st.markdown("## Audit Report")
-    st.markdown(st.session_state.response_text)
-
+        st.markdown("## Audit Report")
+        st.markdown(response.text)
