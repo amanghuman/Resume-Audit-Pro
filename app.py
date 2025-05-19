@@ -220,16 +220,33 @@ Your output will be discarded if it includes:
     st.session_state.response_text = response.text
     st.session_state.auditing = False
     
-# Resume Audit Button or Loader
+# Button click callback to start audit
+def start_audit():
+    if not pdf_file or not job_description or not job_field:
+        st.session_state.audit_error = "Please upload a resume, paste a job description, and specify the job field."
+        return
+    st.session_state.audit_error = None
+    st.session_state.auditing = True
+    st.session_state.run_audit_now = True
+
+# Trigger button or spinner
 if not st.session_state.auditing:
-    if st.button("Run Resume Audit"):
-        if not pdf_file or not job_description or not job_field:
-            st.error("Please upload a resume, paste a job description, and specify the job field.")
-        else:
-            run_audit()
+    st.button("Run Resume Audit", on_click=start_audit)
 else:
-    # Show loading animation while auditing
-    st_lottie(load_lottie_url("https://lottie.host/d139f326-5bbf-45ed-a57a-62934d3be4fb/8qPUEVboB4.json"), height=180, key="loading-animation")
+    st_lottie(
+        load_lottie_url("https://lottie.host/d139f326-5bbf-45ed-a57a-62934d3be4fb/8qPUEVboB4.json"),
+        height=180,
+        key="loading-animation"
+    )
+
+# Show error if input missing
+if st.session_state.get("audit_error"):
+    st.error(st.session_state.audit_error)
+
+# Run audit exactly once when triggered
+if st.session_state.get("run_audit_now"):
+    st.session_state.run_audit_now = False  # prevent repeat runs
+    run_audit()
 
 # Show result if available
 if "response_text" in st.session_state and st.session_state.response_text:
