@@ -30,7 +30,7 @@ def load_lottie_url(url):
         return None
     return r.json()
 
-lottie_resume = load_lottie_url("https://assets2.lottiefiles.com/packages/lf20_tijmpv.json")
+lottie_resume = load_lottie_url("https://assets10.lottiefiles.com/packages/lf20_j1adxtyb.json")
 
 # Header
 st.markdown("<h1 class='title'>Resume Audit Pro</h1>", unsafe_allow_html=True)
