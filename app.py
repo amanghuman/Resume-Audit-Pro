@@ -53,7 +53,7 @@ if st.button("Run Resume Audit"):
         st.error("Please upload a resume, paste a job description, and specify the job field.")
     else:
         with st.spinner("Auditing your resume..."):
-            st_lottie(load_lottie_url("https://lottie.host/566c120d-1155-41d7-94ff-c65e149fe7fb/bnTiRido9Z.lottie"), height=180, key="loading-animation")
+            st_lottie(load_lottie_url("https://lottie.host/d139f326-5bbf-45ed-a57a-62934d3be4fb/8qPUEVboB4.json"), height=180, key="loading-animation")
             
             pdf_file.seek(0)  # Reset file pointer
             with pdfplumber.open(pdf_file) as pdf:
