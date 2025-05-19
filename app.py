@@ -48,7 +48,6 @@ job_field = st.text_input("Enter the job field (e.g., Data Science, Marketing, S
 st.markdown("## Job Description")
 job_description = st.text_area("Paste the job description", height=220)
 
-# Run audit
 if st.button("Run Resume Audit"):
     if not pdf_file or not job_description or not job_field:
         st.error("Please upload a resume, paste a job description, and specify the job field.")
@@ -62,7 +61,7 @@ if st.button("Run Resume Audit"):
             st.stop()
 
         prompt = f"""
-        # 📄 Resume Review Prompt for {job_field} Position against the job description.
+        # 📄 Resume Review Prompt for {job_field} Position
 
 
 You are a **senior hiring manager** with over 20 years of experience at top-tier global companies, specifically in {job_field}.  
