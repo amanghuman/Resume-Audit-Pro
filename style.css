@@ -32,7 +32,7 @@ h2, h3 {
 }
 
 .stButton > button {
-    background-color: #2d6cdf;
+    background-color: #000000;
     color: white;
     font-size: 16px;
     padding: 10px 24px;
@@ -45,14 +45,14 @@ h2, h3 {
 }
 
 .stButton > button:hover {
-    background-color: #1a4fb3;
+    background-color: #000000;
     color: white;
     box-shadow: 0 4px 12px rgba(45, 108, 223, 0.3);
     transform: translateY(-1px);
 }
 
 .stButton > button:active {
-    background-color: #0f3a8c;
+    background-color: #000000;
     color: white;
     box-shadow: 0 2px 6px rgba(45, 108, 223, 0.2);
     transform: translateY(0);
