@@ -40,14 +40,18 @@ st_lottie(lottie_resume, height=180, key="audit-animation")
 st.markdown("## Upload Resume")
 pdf_file = st.file_uploader("Upload your resume as a PDF", type=["pdf"])
 
+# Job field input
+st.markdown("## Job Field")
+job_field = st.text_input("Enter the job field (e.g., Data Science, Marketing, Software Engineering)", max_chars=50)
+
 # Job description input
 st.markdown("## Job Description")
 job_description = st.text_area("Paste the job description", height=220)
 
 # Run audit
 if st.button("Run Resume Audit"):
-    if not pdf_file or not job_description:
-        st.error("Please upload a resume and paste a job description.")
+    if not pdf_file or not job_description or not job_field:
+        st.error("Please upload a resume, paste a job description, and specify the job field.")
     else:
         with pdfplumber.open(pdf_file) as pdf:
             resume_text = "".join([page.extract_text() or "" for page in pdf.pages])
