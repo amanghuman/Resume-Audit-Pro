@@ -41,8 +41,8 @@ st.markdown("## Upload Resume")
 pdf_file = st.file_uploader("Upload your resume as a PDF", type=["pdf"])
 
 # Job field input
-st.markdown("## Job Field")
-job_field = st.text_input("Enter the job field (e.g., Data Science, Marketing, Software Engineering)", max_chars=50)
+# st.markdown("## Job Field")
+# job_field = st.text_input("Enter the job field (e.g., Data Science, Marketing, Software Engineering)", max_chars=50)
 
 # Job description input
 st.markdown("## Job Description")
