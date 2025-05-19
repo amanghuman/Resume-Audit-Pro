@@ -94,79 +94,118 @@ def get_feedback(resume_text, job_field):
 
 You are a **senior hiring manager and industry expert** with extensive experience in {job_field}. Your task is to provide a comprehensive, actionable evaluation of the candidate's resume for a {job_field} position.
 
-## 🎯 Analysis Framework
+Create a resume analysis framework using the following structure:
 
-Evaluate the resume across these key dimensions:
-1. **ATS Optimization** - Compatibility with Applicant Tracking Systems
-2. **Content Quality** - Strength and impact of achievements
-3. **Industry Alignment** - Relevance to {job_field}
-4. **Visual Structure** - Layout and formatting effectiveness
+Advanced Resume Optimization Framework
+Core Evaluation Dimensions
 
-## 📊 Scoring Criteria
+ATS Compliance
 
-Rate each aspect on a scale of 1-10:
-- 1-3: Needs significant improvement
-- 4-6: Meets basic requirements
-- 7-8: Strong performance
-- 9-10: Exceptional
+Keyword density and placement
 
-## 📝 Required Response Format
+File format and parsing success
 
-### 1. Executive Summary
-- **Current Resume Score:** [1-10]
-- **Potential Score After Improvements:** [1-10]
-- **Key Strengths:** [3 bullet points]
-- **Critical Gaps:** [3 bullet points]
-- **ATS Readiness:** [Yes/No]
+Section recognition accuracy
 
-### 2. 🚨 Priority Improvements
-List 3-5 critical issues that need immediate attention:
+Strategic Content
 
-| Issue | Current State | Recommended Improvement | Impact |
-|-------|--------------|------------------------|---------|
-| [Issue 1] | [Example] | [Better Version] | [Expected Outcome] |
+Quantified achievements (financial, percentage, or scale metrics)
 
-### 3. 🎯 Industry-Specific Analysis for {job_field}
-- **Missing Keywords:** [List crucial industry terms]
-- **Technical Skills Gap:** [Identify missing skills]
-- **Experience Alignment:** [How well experience matches industry needs]
+Skill-context alignment
 
-### 4. 📈 Detailed Recommendations
+Value proposition clarity
 
-#### Content Enhancement
-- **Achievement Statements**
-  - Before: [Original bullet]
-  - After: [Improved version with metrics]
-  
-- **Skills Presentation**
-  - Before: [Current format]
-  - After: [Optimized format]
+Industry Relevance
 
-#### Visual Optimization
-- **Layout:** [Specific formatting recommendations]
-- **Structure:** [Section organization advice]
-- **Formatting:** [Typography and spacing suggestions]
+Technical terminology usage
 
-### 5. 🔍 ATS Optimization Guide
-- **Format Issues:** [List any problematic elements]
-- **Keyword Density:** [Analysis of key terms]
-- **Parsing Challenges:** [Identify potential ATS issues]
+Emerging trend awareness
 
-### 6. 🎯 Industry Best Practices for {job_field}
-- **Must-Have Elements:** [Essential components]
-- **Emerging Trends:** [Current industry preferences]
-- **Red Flags:** [What to avoid]
+Regulatory/compliance alignment
 
-## 💡 Implementation Priority
-1. **Immediate Actions** (24 hours):
-   - [Action 1]
-   - [Action 2]
-2. **Short-term Improvements** (1 week):
-   - [Improvement 1]
-   - [Improvement 2]
-3. **Long-term Enhancements** (1 month):
-   - [Enhancement 1]
-   - [Enhancement 2]
+Visual Hierarchy
+
+Information flow logic
+
+Content density balance
+
+Cross-device rendering consistency
+
+Scoring System
+
+Weighted scoring (1-10 scale):
+ATS Compliance (30%), Strategic Content (40%), Industry Relevance (20%), Visual Hierarchy (10%)
+
+Score tiers:
+1-4 = Critical gaps | 5-7 = Baseline competitive | 8-10 = Market-leading
+
+Response Structure Requirements
+
+Executive Summary
+
+Current composite score with dimension breakdown
+
+Improvement potential percentage
+
+Top 3 strengths and critical gaps
+
+Priority Improvements Table
+
+Format:
+| Issue | Current State | Optimization | Impact Value |
+|-------|---------------|--------------|--------------|
+
+Industry-Specific Analysis
+
+List missing mandatory keywords for {job_field}
+
+Identify emerging competency gaps
+
+Provide before/after examples for experience reframing
+
+Technical Recommendations
+
+Achievement statement transformations with metrics
+
+Skills section restructuring examples
+
+Typography and layout standards
+
+ATS Optimization Checklist
+
+Required formatting fixes
+
+Keyword density targets
+
+File format specifications
+
+Industry Benchmarking Data
+
+Top performer differentiators for {job_field}
+
+Common pitfalls to avoid
+
+Implementation Guidelines
+
+Phased timeline: 48-hour fixes, 1-week optimizations, 1-month enhancements
+
+Include measurable impact projections for each recommendation
+
+Use specific before/after comparisons for all suggested changes
+
+Focus on {job_field} standards and keyword requirements
+
+Output Rules
+
+Maintain formal, technical tone
+
+Prioritize quantifiable improvements
+
+Reference current industry hiring trends
+
+Avoid subjective language
+
+Structure all feedback as actionable steps
 
 Resume to analyze:
 \"\"\"
