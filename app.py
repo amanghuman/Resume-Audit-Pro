@@ -53,8 +53,13 @@ if st.button("Run Resume Audit"):
     if not pdf_file or not job_description or not job_field:
         st.error("Please upload a resume, paste a job description, and specify the job field.")
     else:
+        pdf_file.seek(0)  # ✅ FIX 1: Reset file pointer
         with pdfplumber.open(pdf_file) as pdf:
             resume_text = "".join([page.extract_text() or "" for page in pdf.pages])
+
+        if not resume_text.strip():  # ✅ FIX 2: Handle image-based or empty PDFs
+            st.error("No extractable text found in the PDF. Please upload a text-based resume.")
+            st.stop()
 
         prompt = f"""
         # 📄 Resume Review Prompt for {job_field} Position
