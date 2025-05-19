@@ -33,35 +33,40 @@ h2, h3 {
 
 .stButton > button {
     background-color: #000000;
-    color: white;
+    color: white !important; /* Force white text in all states */
     font-size: 16px;
     padding: 10px 24px;
     border: none;
     border-radius: 8px;
     transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
-                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateZ(0); /* Enable hardware acceleration */
-    backface-visibility: hidden; /* Improve anti-aliasing */
+                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.3s ease;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .stButton > button:hover {
-    background-color: #000000;
-    color: white;
-    box-shadow: 0 4px 12px rgba(45, 108, 223, 0.3);
-    transform: translateY(-1px);
+    background-color: #111111;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1.5px);
 }
 
 .stButton > button:active {
-    background-color: #000000;
-    color: white;
-    box-shadow: 0 2px 6px rgba(45, 108, 223, 0.2);
+    background-color: #222222;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     transform: translateY(0);
 }
 
 .stButton > button:focus {
     outline: none;
-    color: white;
-    box-shadow: 0 0 0 3px rgba(45, 108, 223, 0.4);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+}
+
+/* Ensure text remains white in all states */
+.stButton > button:hover,
+.stButton > button:active,
+.stButton > button:focus {
+    color: white !important;
 }
 
 .stMarkdown {
