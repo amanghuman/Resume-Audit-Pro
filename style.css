@@ -33,17 +33,32 @@ h2, h3 {
 
 .stButton > button {
     background-color: #2d6cdf;
-    color: black;
+    color: white;
     font-size: 16px;
     padding: 10px 24px;
     border: none;
     border-radius: 8px;
-    transition: all 0.3s ease-in-out;
+    transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateZ(0); /* Enable hardware acceleration */
+    backface-visibility: hidden; /* Improve anti-aliasing */
 }
 
 .stButton > button:hover {
-    background-color: #245bb5;
-    transform: scale(1.03);
+    background-color: #1a4fb3;
+    box-shadow: 0 4px 12px rgba(45, 108, 223, 0.3);
+    transform: translateY(-1px);
+}
+
+.stButton > button:active {
+    background-color: #0f3a8c;
+    box-shadow: 0 2px 6px rgba(45, 108, 223, 0.2);
+    transform: translateY(0);
+}
+
+.stButton > button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(45, 108, 223, 0.4);
 }
 
 .stMarkdown {
