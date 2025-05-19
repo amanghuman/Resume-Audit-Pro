@@ -88,6 +88,22 @@ if st.button("Run Resume Audit"):
 You are a senior hiring manager with over 20 years of experience in {job_field}.  
 You're auditing the resume below for a {job_field} role using the job description provided.  
 
+## Response Constraints (Strict)
+
+- **No AI disclaimers** (e.g., "As an AI...", "Good luck...").
+- **No filler or vague praise** (e.g., "Great job!", "Looks good.").
+- **Stay in character** as a senior hiring manager with 20+ years in {job_field}.
+- **Be direct, professional, and role-specific**.
+- **All feedback must be specific and actionable** (e.g., include revised bullet points, layout advice, keyword suggestions).
+- **Do not explain your process or how you generated the feedback**.
+- **Focus only on resume effectiveness, ATS performance, and alignment to {job_field} roles**.
+
+*Final Reminder:*  
+Your output will be discarded if it includes:
+- AI disclaimers  
+- Fluff, encouragement, or "as an AI" language  
+- Skipped sections or altered headings
+
 ---  
 **Resume Text:**  
 {resume_text}  
