@@ -10,6 +10,10 @@ import requests
 load_dotenv()
 genai.configure(api_key=st.secrets.gemini.api_key)
 
+# Initialize session state
+if "auditing" not in st.session_state:
+    st.session_state.auditing = False
+
 st.set_page_config(
     page_title="Resume Audit Pro",
     page_icon="",
@@ -48,22 +52,19 @@ job_field = st.text_input("Enter the job field (e.g., Data Science, Marketing, S
 st.markdown("## Job Description")
 job_description = st.text_area("Paste the job description", height=220)
 
-if st.button("Run Resume Audit"):
-    if not pdf_file or not job_description or not job_field:
-        st.error("Please upload a resume, paste a job description, and specify the job field.")
-    else:
-        with st.spinner("Auditing your resume..."):
-            st_lottie(load_lottie_url("https://lottie.host/d139f326-5bbf-45ed-a57a-62934d3be4fb/8qPUEVboB4.json"), height=180, key="loading-animation")
-            
-            pdf_file.seek(0)  # Reset file pointer
-            with pdfplumber.open(pdf_file) as pdf:
-                resume_text = "".join([page.extract_text() or "" for page in pdf.pages])
+def run_audit():
+    st.session_state.auditing = True
 
-            if not resume_text.strip():
-                st.error("No extractable text found in the PDF. Please upload a text-based resume.")
-                st.stop()
+    pdf_file.seek(0)
+    with pdfplumber.open(pdf_file) as pdf:
+        resume_text = "".join([page.extract_text() or "" for page in pdf.pages])
 
-            prompt = f"""
+    if not resume_text.strip():
+        st.error("No extractable text found in the PDF. Please upload a text-based resume.")
+        st.session_state.auditing = False
+        return
+
+    prompt = f"""
         # 📄 Resume Review Prompt for {job_field} Position against the job description.
 
 
@@ -213,8 +214,25 @@ Your output will be discarded if it includes:
         {job_description}
         """
 
-        model = genai.GenerativeModel("gemini-2.0-flash")
-        response = model.generate_content(prompt)
+    model = genai.GenerativeModel("gemini-2.0-flash")
+    response = model.generate_content(prompt)
 
-        st.markdown("## Audit Report")
-        st.markdown(response.text)
+    st.session_state.response_text = response.text
+    st.session_state.auditing = False
+    
+# Resume Audit Button or Loader
+if not st.session_state.auditing:
+    if st.button("Run Resume Audit"):
+        if not pdf_file or not job_description or not job_field:
+            st.error("Please upload a resume, paste a job description, and specify the job field.")
+        else:
+            run_audit()
+else:
+    # Show loading animation while auditing
+    st_lottie(load_lottie_url("https://lottie.host/d139f326-5bbf-45ed-a57a-62934d3be4fb/8qPUEVboB4.json"), height=180, key="loading-animation")
+
+# Show result if available
+if "response_text" in st.session_state and st.session_state.response_text:
+    st.markdown("## Audit Report")
+    st.markdown(st.session_state.response_text)
+
