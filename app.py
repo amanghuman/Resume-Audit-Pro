@@ -32,9 +32,13 @@ def load_lottie_url(url):
 
 lottie_resume = load_lottie_url("https://assets10.lottiefiles.com/packages/lf20_j1adxtyb.json")
 
-# Header
-st.markdown("<h1 class='title'>Resume Audit Pro</h1>", unsafe_allow_html=True)
-st_lottie(lottie_resume, height=180, key="audit-animation")
+col1, col2 = st.columns([6, 1])  # Title and spinner side-by-side
+
+with col1:
+    st.markdown("<h1 class='title'>Resume Audit Pro</h1>", unsafe_allow_html=True)
+
+spinner_placeholder = col2.empty()  # Placeholder for black & white spinner
+
 
 # File upload
 st.markdown("## Upload Resume")
@@ -52,15 +56,27 @@ if st.button("Run Resume Audit"):
     if not pdf_file or not job_description or not job_field:
         st.error("Please upload a resume, paste a job description, and specify the job field.")
     else:
-        pdf_file.seek(0)  # ✅ FIX 1: Reset file pointer
-        with pdfplumber.open(pdf_file) as pdf:
-            resume_text = "".join([page.extract_text() or "" for page in pdf.pages])
+        # Show spinner while audit is running
+        spinner_placeholder.markdown(
+            """
+            <div style="text-align:center;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" width="50"/>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
-        if not resume_text.strip():  # ✅ FIX 2: Handle image-based or empty PDFs
-            st.error("No extractable text found in the PDF. Please upload a text-based resume.")
-            st.stop()
-        # Resume Review Prompt for {job_field} Position
-        prompt = f"""
+        with st.spinner("Auditing your resume..."):
+            pdf_file.seek(0)  # ✅ FIX 1: Reset file pointer
+            with pdfplumber.open(pdf_file) as pdf:
+                resume_text = "".join([page.extract_text() or "" for page in pdf.pages])
+
+            if not resume_text.strip():  # ✅ FIX 2: Handle image-based or empty PDFs
+                st.error("No extractable text found in the PDF. Please upload a text-based resume.")
+                st.stop()
+
+            # Resume Review Prompt for {job_field} Position
+            prompt = f"""
 
 You are a **senior hiring manager** with over 20 years of experience at top-tier global companies, specifically in {job_field}.  
 Your task is to critically evaluate the resume provided below as if you're deciding whether to shortlist this candidate for a competitive {job_field} role.
@@ -208,8 +224,10 @@ Job Description:
 {job_description}
 """
 
-        model = genai.GenerativeModel("gemini-2.0-flash")
-        response = model.generate_content(prompt)
+            model = genai.GenerativeModel("gemini-2.0-flash")
+            response = model.generate_content(prompt)
 
+        # Clear the spinner once complete
+        spinner_placeholder.empty()
         st.markdown("## Audit Report")
         st.markdown(response.text)
