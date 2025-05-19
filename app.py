@@ -48,20 +48,22 @@ job_field = st.text_input("Enter the job field (e.g., Data Science, Marketing, S
 st.markdown("## Job Description")
 job_description = st.text_area("Paste the job description", height=220)
 
-# Run audit
 if st.button("Run Resume Audit"):
     if not pdf_file or not job_description or not job_field:
         st.error("Please upload a resume, paste a job description, and specify the job field.")
     else:
-        pdf_file.seek(0)  # ✅ FIX 1: Reset file pointer
-        with pdfplumber.open(pdf_file) as pdf:
-            resume_text = "".join([page.extract_text() or "" for page in pdf.pages])
+        with st.spinner("Auditing your resume..."):
+            st_lottie(load_lottie_url("https://lottie.host/566c120d-1155-41d7-94ff-c65e149fe7fb/bnTiRido9Z.lottie"), height=180, key="loading-animation")
+            
+            pdf_file.seek(0)  # Reset file pointer
+            with pdfplumber.open(pdf_file) as pdf:
+                resume_text = "".join([page.extract_text() or "" for page in pdf.pages])
 
-        if not resume_text.strip():  # ✅ FIX 2: Handle image-based or empty PDFs
-            st.error("No extractable text found in the PDF. Please upload a text-based resume.")
-            st.stop()
+            if not resume_text.strip():
+                st.error("No extractable text found in the PDF. Please upload a text-based resume.")
+                st.stop()
 
-        prompt = f"""
+                prompt = f"""
         # 📄 Resume Review Prompt for {job_field} Position against the job description.
 
 
@@ -211,8 +213,8 @@ Your output will be discarded if it includes:
         {job_description}
         """
 
-        model = genai.GenerativeModel("gemini-2.0-flash")
-        response = model.generate_content(prompt)
+                model = genai.GenerativeModel("gemini-2.0-flash")
+                response = model.generate_content(prompt)
 
         st.markdown("## Audit Report")
         st.markdown(response.text)
