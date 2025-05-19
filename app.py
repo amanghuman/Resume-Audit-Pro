@@ -41,8 +41,8 @@ st.markdown("## Upload Resume")
 pdf_file = st.file_uploader("Upload your resume as a PDF", type=["pdf"])
 
 # Job field input
-# st.markdown("## Job Field")
-# job_field = st.text_input("Enter the job field (e.g., Data Science, Marketing, Software Engineering)", max_chars=50)
+st.markdown("## Job Field")
+job_field = st.text_input("Enter the job field (e.g., Data Science, Marketing, Software Engineering)", max_chars=50)
 
 # Job description input
 st.markdown("## Job Description")
@@ -62,7 +62,7 @@ if st.button("Run Resume Audit"):
             st.stop()
 
         prompt = f"""
-        # 📄 Resume Review Prompt for {job_field} Position
+        # 📄 Resume Review Prompt for {job_field} Position against the job description.
 
 
 You are a **senior hiring manager** with over 20 years of experience at top-tier global companies, specifically in {job_field}.  
