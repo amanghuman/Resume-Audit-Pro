@@ -8,7 +8,7 @@ import requests
 
 # Load environment variables
 load_dotenv()
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+genai.configure(api_key=st.secrets.gemini.api_key)
 
 st.set_page_config(
     page_title="Resume Audit Pro",
