@@ -202,13 +202,8 @@ Your output will be discarded if it includes:
         {job_description}
         """
 
-            try:
-                model = genai.GenerativeModel("gemini-2.0-flash")
-                response = model.generate_content(prompt)
-                return response.text
-            except Exception as e:
-                st.error(f"Gemini Error: {e}")
-                return None
+        model = genai.GenerativeModel("gemini-2.0-flash")
+        response = model.generate_content(prompt)
 
         st.markdown("## Audit Report")
         st.markdown(response.text)
