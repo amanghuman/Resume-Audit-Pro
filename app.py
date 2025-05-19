@@ -59,10 +59,8 @@ if st.button("Run Resume Audit"):
         if not resume_text.strip():  # ✅ FIX 2: Handle image-based or empty PDFs
             st.error("No extractable text found in the PDF. Please upload a text-based resume.")
             st.stop()
-
+        # Resume Review Prompt for {job_field} Position
         prompt = f"""
-        # 📄 Resume Review Prompt for {job_field} Position
-
 
 You are a **senior hiring manager** with over 20 years of experience at top-tier global companies, specifically in {job_field}.  
 Your task is to critically evaluate the resume provided below as if you're deciding whether to shortlist this candidate for a competitive {job_field} role.
@@ -72,7 +70,7 @@ Focus on **clarity, structure, tone, formatting, keyword alignment**, and **over
 
 ---
 
-⚠️ **Format Required**  
+**Format Required**  
 Respond using the *exact* section titles, formatting, and Markdown structure as shown below.  
 **Do not skip or add sections. Do not reword headings.**
 
@@ -85,7 +83,7 @@ Respond using the *exact* section titles, formatting, and Markdown structure as 
 
 ---
 
-## 🚨 Major Issues (Red Flags)
+## Major Issues (Red Flags)
 
 List critical issues that could hurt the resume's chances, along with suggestions for improvement.  
 Each issue should include an **example of the original content** and a **revised version**, specifically for {job_field} positions.
@@ -101,7 +99,7 @@ Each issue should include an **example of the original content** and a **revised
 
 ---
 
-## ⚙️ ATS Compatibility Check for {job_field}
+## ATS Compatibility Check for {job_field}
 
 - **Missing or Weak Keywords:**  
 - **Design/Layout Barriers:**  
@@ -109,11 +107,11 @@ Each issue should include an **example of the original content** and a **revised
 
 ---
 
-## 🔧 Fix Recommendations
+## Fix Recommendations
 
 Below are quick and deep fixes across three key areas of resume improvement: **Content**, **Design**, and **Strategy**.
 
-### 📌 Content
+### Content
 
 **Quick Fix (≤1 hr):**  
 - Rewrite bullet points using strong action verbs (e.g., "Led", "Created", "Improved").
@@ -121,9 +119,9 @@ Below are quick and deep fixes across three key areas of resume improvement: **C
   
 **Use this format:**
 
-❌ *[Original bullet from resume]*  
+*[Original bullet from resume]*  
 
-✅ *[Improved version using action verb, clarity, and result]*
+*[Improved version using action verb, clarity, and result]*
 
 **Deep Fix (3–5 hrs):**  
 - Reframe each experience to show outcomes and impact. Use the **[Action] + [What you did] + [Result]** format.  
@@ -132,7 +130,7 @@ Below are quick and deep fixes across three key areas of resume improvement: **C
 
 ---
 
-### 🎨 Design
+### Design
 
 **Quick Fix (≤1 hr):**  
 - Use consistent fonts, spacing, and alignment.  
@@ -140,9 +138,9 @@ Below are quick and deep fixes across three key areas of resume improvement: **C
 
 **Example (based on resume):**  
 
-❌ *Multiple font sizes used in 'Experience' section*
+*Multiple font sizes used in 'Experience' section*
 
-✅ *Use one consistent font (e.g., Calibri 11pt) and align all bullets to left*
+*Use one consistent font (e.g., Calibri 11pt) and align all bullets to left*
 
 **Deep Fix (3–5 hrs):**  
 - Apply a modern, ATS-friendly layout (e.g., left-aligned layout, no columns or graphics).  
@@ -151,7 +149,7 @@ Below are quick and deep fixes across three key areas of resume improvement: **C
 
 ---
 
-### 🎯 Strategy
+### Strategy
 
 **Quick Fix (≤1 hr):**  
 - Add 4–6 keywords from a relevant job description (skills, tools, roles).
@@ -159,9 +157,9 @@ Below are quick and deep fixes across three key areas of resume improvement: **C
 
 **Use this format:**
 
-❌ *[Original summary from resume]*  
+*[Original summary from resume]*  
 
-✅ *[Improved version with clearer career goals and targeted language]*
+*[Improved version with clearer career goals and targeted language]*
 
 **Deep Fix (3–5 hrs):**  
 - Research 2–3 target job listings and align resume language and structure to match.  
@@ -170,7 +168,7 @@ Below are quick and deep fixes across three key areas of resume improvement: **C
 
 ---
 
-## 🎯 Positioning Benchmark for {job_field}
+## Positioning Benchmark for {job_field}
 
 - **Target Level:** (e.g., Internship / Entry-Level / Mid-Level)
 - **Resume Tier:** Top 10% / Average / Needs Work
@@ -178,7 +176,7 @@ Below are quick and deep fixes across three key areas of resume improvement: **C
 
 ---
 
-## ✅ Key {job_field} Industry Tips
+## Key {job_field} Industry Tips
 
 - Keep it to one page unless you have over 5 years of experience.
 - Prioritize results and impact (quantify wherever possible).
@@ -189,7 +187,7 @@ Below are quick and deep fixes across three key areas of resume improvement: **C
 
 ---
 
-## ⚠️ Response Constraints (Strict)
+## Response Constraints (Strict)
 
 - **No AI disclaimers** (e.g., "As an AI...", "Good luck...").
 - **No filler or vague praise** (e.g., "Great job!", "Looks good.").
@@ -199,16 +197,16 @@ Below are quick and deep fixes across three key areas of resume improvement: **C
 - **Do not explain your process or how you generated the feedback**.
 - **Focus only on resume effectiveness, ATS performance, and alignment to {job_field} roles**.
 
-💡 *Final Reminder:*  
+*Final Reminder:*  
 Your output will be discarded if it includes:
 - AI disclaimers  
 - Fluff, encouragement, or "as an AI" language  
 - Skipped sections or altered headings
 
 
-        Job Description:
-        {job_description}
-        """
+Job Description:
+{job_description}
+"""
 
         model = genai.GenerativeModel("gemini-2.0-flash")
         response = model.generate_content(prompt)
