@@ -63,7 +63,7 @@ if st.button("Run Resume Audit"):
                 st.error("No extractable text found in the PDF. Please upload a text-based resume.")
                 st.stop()
 
-                prompt = f"""
+            prompt = f"""
         # 📄 Resume Review Prompt for {job_field} Position against the job description.
 
 
