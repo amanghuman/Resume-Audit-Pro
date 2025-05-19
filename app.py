@@ -213,8 +213,8 @@ Your output will be discarded if it includes:
         {job_description}
         """
 
-                model = genai.GenerativeModel("gemini-2.0-flash")
-                response = model.generate_content(prompt)
+        model = genai.GenerativeModel("gemini-2.0-flash")
+        response = model.generate_content(prompt)
 
         st.markdown("## Audit Report")
         st.markdown(response.text)
